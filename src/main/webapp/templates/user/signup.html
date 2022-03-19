@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/user/signup}" method="post" th:object="${user}">
+
+        <label th:for="firstName">First name:</label>
+        <input type="text" id="firstName" th:field="*{firstName}"/>
+        <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Incorrect first name</p>
+        <br><br>
+
+        <label th:for="lastName">Last name:</label>
+        <input type="text" id="lastName" th:field="*{lastName}"/>
+        <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Incorrect last name</p>
+        <br><br>
+
+
+        <label th:for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}"/>
+        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Incorrect username</p>
+        <br><br>
+
+        <label th:for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}"/>
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect email</p>
+        <br><br>
+
+        <label th:for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}"/>
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect password</p>
+        <br><br>
+
+        <input type="submit"/>
+
+    </form>
+
+</body>
+</html>
