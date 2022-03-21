@@ -1,7 +1,6 @@
 package org.onliner.spring.c51.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -19,13 +18,13 @@ public class User {
     public User() {
     }
 
-    public User(long id, String firstName, String lastName, String username, String email, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    private User(Builder builder) {
+        this.id = builder.builderId;
+        this.firstName = builder.builderFirstName;
+        this.lastName = builder.builderLastName;
+        this.username = builder.builderUsername;
+        this.email = builder.builderEmail;
+        this.password = builder.builderPassword;
     }
 
     public long getId() {
@@ -76,28 +75,53 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+    public static Builder builder() {
+        return new Builder();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, username, email, password);
-    }
+    public static class Builder {
+        private long builderId;
+        private String builderFirstName;
+        private String builderLastName;
+        private String builderUsername;
+        private String builderEmail;
+        private String builderPassword;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        public Builder() {
+        }
+
+        public Builder id(long id) {
+            builderId = id;
+            return this;
+        }
+
+        public Builder firstName(String firstName) {
+            builderFirstName = firstName;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            builderLastName = lastName;
+            return this;
+        }
+
+        public Builder username(String username) {
+            builderUsername = username;
+            return this;
+        }
+
+        public Builder email(String email) {
+            builderEmail = email;
+            return this;
+        }
+
+        public Builder password(String password) {
+            builderPassword = password;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 }
