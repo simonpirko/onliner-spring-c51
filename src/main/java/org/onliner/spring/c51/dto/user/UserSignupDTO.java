@@ -1,29 +1,40 @@
 package org.onliner.spring.c51.dto.user;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 public class UserSignupDTO {
     @NotNull
-    @Size(min = 5)
+    @NotBlank
+    @Length(min = 2)
+    @Pattern(regexp = "^([А-Я][а-яё]{1,23}|[A-Z][a-z]{1,23})$")
     private String firstName;
 
     @NotNull
-    @Size (min = 5)
+    @NotBlank
+    @Length (min = 2)
+    @Pattern(regexp = "^([А-Я][а-яё]{1,23}|[A-Z][a-z]{1,23})$")
     private String lastName;
 
     @NotNull
-    @Size(min = 5)
+    @NotBlank
+    @Length(min = 2)
+    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9]{1,20}$")
     private String username;
 
     @NotNull
+    @NotBlank
     @Email(regexp = ".*@[a-z]*\\.[a-z]{2,}")
-    @Size(min = 3, max = 100)
+    @Length(min = 3, max = 100)
     private String email;
 
     @NotNull
-    @Size(min = 6, max = 10)
+    @NotBlank
+    @Length(min = 6, max = 10)
+    @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$")
     private String password;
 
     public String getFirstName() {
