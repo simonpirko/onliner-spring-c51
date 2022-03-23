@@ -19,13 +19,13 @@ public class User {
     public User() {
     }
 
-    public User(long id, String firstName, String lastName, String username, String email, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    private User(Builder builder) {
+        this.id = builder.builderId;
+        this.firstName = builder.builderFirstName;
+        this.lastName = builder.builderLastName;
+        this.username = builder.builderUsername;
+        this.email = builder.builderEmail;
+        this.password = builder.builderPassword;
     }
 
     public long getId() {
@@ -74,6 +74,56 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private long builderId;
+        private String builderFirstName;
+        private String builderLastName;
+        private String builderUsername;
+        private String builderEmail;
+        private String builderPassword;
+
+        public Builder() {
+        }
+
+        public Builder id(long id) {
+            builderId = id;
+            return this;
+        }
+
+        public Builder firstName(String firstName) {
+            builderFirstName = firstName;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            builderLastName = lastName;
+            return this;
+        }
+
+        public Builder username(String username) {
+            builderUsername = username;
+            return this;
+        }
+
+        public Builder email(String email) {
+            builderEmail = email;
+            return this;
+        }
+
+        public Builder password(String password) {
+            builderPassword = password;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 
     @Override

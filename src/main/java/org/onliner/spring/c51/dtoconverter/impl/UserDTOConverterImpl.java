@@ -21,12 +21,12 @@ public class UserDTOConverterImpl implements UserDTOConverter {
 
     @Override
     public User convertToUserFromUserSignupDTO(UserSignupDTO userSignupDTO) {
-        User user = new User();
-        user.setFirstName(userSignupDTO.getFirstName());
-        user.setLastName(userSignupDTO.getLastName());
-        user.setUsername(userSignupDTO.getUsername());
-        user.setEmail(userSignupDTO.getEmail());
-        user.setPassword(userSignupDTO.getPassword());
-        return user;
+        return User.builder()
+                .firstName(userSignupDTO.getFirstName())
+                .lastName(userSignupDTO.getLastName())
+                .username(userSignupDTO.getUsername())
+                .email(userSignupDTO.getEmail())
+                .password(userSignupDTO.getPassword())
+                .build();
     }
 }
