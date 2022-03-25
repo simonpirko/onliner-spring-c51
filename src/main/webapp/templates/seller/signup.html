@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/seller/signup}" method="post" th:object="${seller}">
+
+        <label th:for="legalEntityName">Name of the legal entity:</label>
+        <input type="text" id="legalEntityName" th:field="*{legalEntityName}"/>
+        <p th:if="${#fields.hasErrors('legalEntityName')}" th:errors="*{legalEntityName}">Incorrect name of the legal entity</p>
+        <br><br>
+
+        <label th:for="stateRegistrationLegalEntityPlace">Place of state registration of a legal entity:</label>
+        <input type="text" id="stateRegistrationLegalEntityPlace" th:field="*{stateRegistrationLegalEntityPlace}"/>
+        <p th:if="${#fields.hasErrors('stateRegistrationLegalEntityPlace')}" th:errors="*{stateRegistrationLegalEntityPlace}">Incorrect place of state registration of a legal entity</p>
+        <br><br>
+
+        <label th:for="payerAccountNumber">Payer account number:</label>
+        <input type="text" id="payerAccountNumber" th:field="*{payerAccountNumber}"/>
+        <p th:if="${#fields.hasErrors('payerAccountNumber')}" th:errors="*{payerAccountNumber}">Incorrect payer account number</p>
+        <br><br>
+
+        <label th:for="stateRegistrationDate">Date of state registration:</label>
+        <input type="date" id="stateRegistrationDate" th:field="*{stateRegistrationDate}"/>
+        <p th:if="${#fields.hasErrors('stateRegistrationDate')}" th:errors="*{stateRegistrationDate}">Incorrect date of state registration</p>
+        <br><br>
+
+        <label th:for="registrationAuthority">Registration authority:</label>
+        <input type="text" id="registrationAuthority" th:field="*{registrationAuthority}"/>
+        <p th:if="${#fields.hasErrors('registrationAuthority')}" th:errors="*{registrationAuthority}">Incorrect registration authority</p>
+        <br><br>
+
+        <label th:for="entryTradeRegisterDate">Date of entry in the trade register:</label>
+        <input type="date" id="entryTradeRegisterDate" th:field="*{entryTradeRegisterDate}"/>
+        <p th:if="${#fields.hasErrors('entryTradeRegisterDate')}" th:errors="*{entryTradeRegisterDate}">Incorrect date of entry in the trade register</p>
+        <br><br>
+
+        <input type="submit"/>
+
+    </form>
+
+</body>
+</html>
