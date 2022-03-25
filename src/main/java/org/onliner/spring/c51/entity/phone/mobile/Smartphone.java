@@ -9,7 +9,6 @@ public class Smartphone extends Phone{
     private Storage storage;
     private DisplayResolution displayResolution;
     private OS os;
-    private PhoneCaseMaterial phoneCaseMaterial;
     private Platform platform;
 
 
