@@ -2,29 +2,30 @@ package org.onliner.spring.c51.entity.phone.mobile.enums;
 
 public enum RAM {
 
-        RAM1("4M6"),
-        RAM2("8M6"),
-        RAM3("16M6"),
-        RAM4("20M6"),
-        RAM5("24M6"),
-        RAM6("32M6"),
-        RAM7("48M6"),
-        RAM8("64M6"),
-        RAM9("128M6"),
-        RAM10("256M6"),
-        RAM11("512M6"),
-        RAM12("768M6"),
-        RAM13("1ГБ"),
-        RAM14("1.5ГБ"),
-        RAM15("2ГБ"),
-        RAM16("3ГБ"),
-        RAM17("4ГБ"),
-        RAM18("6ГБ"),
-        RAM19("8ГБ"),
-        RAM20("10ГБ"),
-        RAM21("12ГБ"),
-        RAM22("16ГБ"),
-        RAM23("18ГБ");
+        RAM4Mb("4M6"),
+        RAM8Mb("8M6"),
+        RAM16Mb("16M6"),
+        RAM20Mb("20M6"),
+        RAM24Mb("24M6"),
+        RAM32Mb("32M6"),
+        RAM48Mb("48M6"),
+        RAM64Mb("64M6"),
+        RAM128Mb("128M6"),
+        RAM256Mb("256M6"),
+        RAM512Mb("512M6"),
+        RAM768Mb("768M6"),
+        RAM1Gb("1ГБ"),
+        RAM1_5Gb("1.5ГБ"),
+        RAM2Gb("2ГБ"),
+        RAM3Gb("3ГБ"),
+        RAM4Gb("4ГБ"),
+        RAM6Gb("6ГБ"),
+        RAM8Gb("8ГБ"),
+        RAM10Gb("10ГБ"),
+        RAM12Gb("12ГБ"),
+        RAM16Gb("16ГБ"),
+        RAM18Gb("18ГБ");
+
 
         private final String displayValue;
 

@@ -2,14 +2,15 @@ package org.onliner.spring.c51.entity.phone.mobile.enums;
 
 public enum PhoneCaseMaterial {
 
-    MATERIAL1("пластик"),
-    MATERIAL2("металл"),
-    MATERIAL3("магниевыйсплав"),
-    MATERIAL4("резина"),
-    MATERIAL5("стекло"),
-    MATERIAL6("стекловолокно"),
-    MATERIAL7("кожа"),
-    MATERIAL8("керамика");
+    PLASTIC("пластик"),
+    METAL("металл"),
+    MAGNESIUM_ALLOY("магниевыйсплав"),
+    RUBBER("резина"),
+    GLASS("стекло"),
+    FIBERGLASS("стекловолокно"),
+    LEATHER("кожа"),
+    CERAMICS("керамика");
+
 
     private final String displayValue;
 

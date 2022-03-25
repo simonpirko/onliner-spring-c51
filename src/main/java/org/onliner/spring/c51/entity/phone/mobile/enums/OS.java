@@ -2,13 +2,14 @@ package org.onliner.spring.c51.entity.phone.mobile.enums;
 
 public enum OS {
 
-    OS1("Android"),
-    OS2("AppleiOS"),
-    OS3("WindowsPhone"),
-    OS4("Symbian"),
-    OS5("Bada"),
-    OS6("NokiaSeries30+"),
-    OS7("KaiOS");
+    ANDROID("Android"),
+    APPLEIOS("AppleiOS"),
+    WINDOWSPHONE("WindowsPhone"),
+    SYMBIAN("Symbian"),
+    BADA("Bada"),
+    NOKIASERIES30("NokiaSeries30+"),
+    KAIOS("KaiOS");
+
 
     private final String displayValue;
 
