@@ -4,16 +4,24 @@ import org.onliner.spring.c51.entity.phone.Phone;
 import org.onliner.spring.c51.enums.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
+
 public class Smartphone extends Phone{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String modelName;
     private RAM ram;
     private Storage storage;
     private DisplayResolution displayResolution;
     private OS os;
     private Platform platform;
+
 
     public Smartphone(Material phoneCaseMaterial, Color phoneCaseColor, Brand brand, String modelName, RAM ram, Storage storage, DisplayResolution displayResolution, OS os, Platform platform) {
         super(phoneCaseMaterial, phoneCaseColor, brand);
@@ -86,10 +94,15 @@ public class Smartphone extends Phone{
         this.platform = platform;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Smartphone{" +
                 "name" + getName() +
+                ", id= " + id +
                 ", modelName='" + modelName + '\'' +
                 ", phoneCaseMaterial=" + getPhoneCaseMaterial() +
                 ", phoneCaseColor=" + getPhoneCaseColor() +

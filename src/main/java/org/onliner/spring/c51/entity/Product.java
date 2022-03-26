@@ -1,14 +1,10 @@
 package org.onliner.spring.c51.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-@Entity
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     private String name;
     private int price;
     private String seller;
@@ -40,15 +36,11 @@ public abstract class Product {
         this.seller = seller;
     }
 
-    public Long getId() {
-        return id;
-    }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", price=" + price +
                 ", seller='" + seller + '\'' +
                 '}';

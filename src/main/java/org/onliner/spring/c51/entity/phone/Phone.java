@@ -4,9 +4,9 @@ import org.onliner.spring.c51.enums.Brand;
 import org.onliner.spring.c51.enums.Color;
 import org.onliner.spring.c51.enums.Material;
 
-import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 
-@Entity
+@MappedSuperclass
 public abstract class Phone extends Product {
 
     private Material phoneCaseMaterial;
