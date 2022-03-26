@@ -10,21 +10,21 @@ public class UserSignupDTO {
     @NotNull
     @NotBlank
     @Length(min = 2, message = "Длина должна быть минимум 2 символа")
-    @Pattern(regexp = "^([А-Я][а-яё]{1,23}|[A-Z][a-z]{1,23})$", message = "Имя должно состоять из латинских букв " +
+    @Pattern(regexp = "^([А-Я][а-яё]{1,23}|[A-Z][a-z]{1,23})$", message = "Имя должно состоять только из латинских букв " +
             " и кириллицы")
     private String firstName;
 
     @NotNull
     @NotBlank
     @Length (min = 2, message = "Длина должна быть минимум 2 символа")
-    @Pattern(regexp = "^([А-Я][а-яё]{1,23}|[A-Z][a-z]{1,23})$", message = "Фамилия должна состоять из латинских букв " +
+    @Pattern(regexp = "^([А-Я][а-яё]{1,23}|[A-Z][a-z]{1,23})$", message = "Фамилия должна состоять только из латинских букв " +
             "и кириллицы")
     private String lastName;
 
     @NotNull
     @NotBlank
     @Length(min = 2, message = "Длина должна быть минимум 2 символа")
-    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9]{1,20}$", message = "Имя пользователя должно состоять из латинских букв, " +
+    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9]{1,20}$", message = "Имя пользователя должно только состоять из латинских букв, " +
             " кириллицы и цифр")
     private String username;
 
@@ -38,7 +38,7 @@ public class UserSignupDTO {
     @NotBlank
     @Length(min = 6, max = 10, message = "Длина должна быть минимум 6 символов и масимум 8")
     @Pattern(regexp = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$", message = "пароль " +
-            "должен состоять из букв, цифр, длиною не более 8 символов")
+            "должен состоять только из букв, цифр, длиною не более 8 символов")
     private String password;
 
     public String getFirstName() {
