@@ -10,9 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDTOConverterImplTest {
 
-
-    private UserDTOConverter userDTOConverter = new UserDTOConverterImpl();
-
     @Test
     void convertToUserSignupDTOFromUser() {
         String list[] = {"Serj","Kuchuk","Papaslip1212","skp@.gmail.com","123qwe"};
@@ -28,7 +25,7 @@ class UserDTOConverterImplTest {
         userSignupDTO.setUsername(list[2]);
         userSignupDTO.setEmail(list[3]);
         userSignupDTO.setPassword(list[4]);
-        assertTrue(userSignupDTO.equals(userDTOConverter.convertToUserSignupDTOFromUser(user)));
+        assertTrue(userSignupDTO.equals(UserDTOConverter.convertToUserSignupDTOFromUser(user)));
     }
 
     @Test
@@ -46,6 +43,6 @@ class UserDTOConverterImplTest {
         userSignupDTO.setUsername(list[2]);
         userSignupDTO.setEmail(list[3]);
         userSignupDTO.setPassword(list[4]);
-        assertTrue(user.equals(userDTOConverter.convertToUserFromUserSignupDTO(userSignupDTO)));
+        assertTrue(user.equals(UserDTOConverter.convertToUserFromUserSignupDTO(userSignupDTO)));
     }
 }
