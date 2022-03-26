@@ -1,4 +1,4 @@
-package org.onliner.spring.c51.entity.phone.mobile;
+package org.onliner.spring.c51.entity.phone;
 import org.onliner.spring.c51.entity.phone.Phone;
 
 import org.onliner.spring.c51.enums.*;
@@ -15,7 +15,7 @@ public class Smartphone extends Phone{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String modelName;
+
     private RAM ram;
     private Storage storage;
     private DisplayResolution displayResolution;
@@ -25,7 +25,6 @@ public class Smartphone extends Phone{
 
     public Smartphone(Material phoneCaseMaterial, Color phoneCaseColor, Brand brand, String modelName, RAM ram, Storage storage, DisplayResolution displayResolution, OS os, Platform platform) {
         super(phoneCaseMaterial, phoneCaseColor, brand);
-        this.modelName = modelName;
         this.ram = ram;
         this.storage = storage;
         this.displayResolution = displayResolution;
@@ -34,7 +33,7 @@ public class Smartphone extends Phone{
     }
 
     public Smartphone(String modelName, RAM ram, Storage storage, DisplayResolution displayResolution, OS os, Platform platform) {
-        this.modelName = modelName;
+
         this.ram = ram;
         this.storage = storage;
         this.displayResolution = displayResolution;
@@ -46,13 +45,7 @@ public class Smartphone extends Phone{
 
     }
 
-    public String getModelName() {
-        return modelName;
-    }
 
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
-    }
 
     public RAM getRam() {
         return ram;
@@ -103,7 +96,6 @@ public class Smartphone extends Phone{
         return "Smartphone{" +
                 "name" + getName() +
                 ", id= " + id +
-                ", modelName='" + modelName + '\'' +
                 ", phoneCaseMaterial=" + getPhoneCaseMaterial() +
                 ", phoneCaseColor=" + getPhoneCaseColor() +
                 ", brand=" + getBrand() +

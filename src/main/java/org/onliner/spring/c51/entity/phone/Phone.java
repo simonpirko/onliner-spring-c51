@@ -8,6 +8,15 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Phone extends Product {
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    private String modelName;
 
     private Material phoneCaseMaterial;
     private Color phoneCaseColor;
@@ -52,6 +61,7 @@ public abstract class Phone extends Product {
     public String toString() {
         return "Phone{" +
                 "name" + getName() +
+                ", modelName='" + modelName + '\'' +
                 ", phoneCaseMaterial=" + phoneCaseMaterial +
                 ", phoneCaseColor=" + phoneCaseColor +
                 ", brand=" + brand +
