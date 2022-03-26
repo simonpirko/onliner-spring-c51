@@ -21,6 +21,11 @@ public class HibernateUserDAO implements UserDAO {
     }
 
     @Override
+    public boolean exists(User entity) {
+        return false;
+    }
+
+    @Override
     public boolean save(User user) {
         Session session = sessionFactory.openSession();
         Serializable resultId = session.save(user);
