@@ -1,4 +1,4 @@
-package org.onliner.spring.c51.entity.phone.mobile.enums;
+package org.onliner.spring.c51.enums;
 
 public enum Platform {
 

@@ -1,6 +1,6 @@
-package org.onliner.spring.c51.entity.phone.mobile.enums;
+package org.onliner.spring.c51.enums;
 
-public enum PhoneCaseMaterial {
+public enum Material {
 
     PLASTIC("пластик"),
     METAL("металл"),
@@ -14,7 +14,7 @@ public enum PhoneCaseMaterial {
 
     private final String displayValue;
 
-    private PhoneCaseMaterial(String displayValue) {
+    private Material(String displayValue) {
         this.displayValue = displayValue;
     }
 
