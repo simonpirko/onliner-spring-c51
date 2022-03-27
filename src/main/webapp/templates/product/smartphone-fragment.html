@@ -1,0 +1,44 @@
+<div th:fragment="smartphone">
+SMARTPHONE
+
+
+	<form th:method="POST" th:action="@{/product/create/smartphone}" th:object="${product}">
+
+        <input type="text" th:field ="*{modelName}" placeholder="Model" required/>
+
+        <select th:field="*{brand}">
+            <option th:each="currentbrand : ${T(org.onliner.spring.c51.enums.Brand).values()}"
+                    th:value="${currentbrand}" th:text="${currentbrand.getDisplayValue()}"></option>
+        </select>
+        <select th:field="*{os}">
+            <option th:each="currentos : ${T(org.onliner.spring.c51.enums.OS).values()}"
+                    th:value="${currentos}" th:text="${currentos.getDisplayValue()}"></option>
+        </select>
+        <select th:field="*{platform}">
+            <option th:each="currentplatform : ${T(org.onliner.spring.c51.enums.Platform).values()}"
+                    th:value="${currentplatform}" th:text="${currentplatform.getDisplayValue()}"></option>
+        </select>
+        <select th:field="*{ram}">
+            <option th:each="currentram : ${T(org.onliner.spring.c51.enums.RAM).values()}"
+                    th:value="${currentram}" th:text="${currentram.getDisplayValue()}"></option>
+        </select>
+        <select th:field="*{storage}">
+            <option th:each="currentstorage : ${T(org.onliner.spring.c51.enums.Storage).values()}"
+                    th:value="${currentstorage}" th:text="${currentstorage.getDisplayValue()}"></option>
+        </select>
+        <select th:field="*{phoneCaseMaterial}">
+            <option th:each="currentphonecasematerial : ${T(org.onliner.spring.c51.enums.Material).values()}"
+                    th:value="${currentphonecasematerial}" th:text="${currentphonecasematerial.getDisplayValue()}"></option>
+        </select>
+        <select th:field="*{phoneCaseColor}">
+            <option th:each="currentphonecasecolor : ${T(org.onliner.spring.c51.enums.Color).values()}"
+                    th:value="${currentphonecasecolor}" th:text="${currentphonecasecolor.getDisplayValue()}"></option>
+        </select>
+        <select th:field="*{displayResolution}">
+            <option th:each="currentdisplayresolution : ${T(org.onliner.spring.c51.enums.DisplayResolution).values()}"
+                    th:value="${currentdisplayresolution}" th:text="${currentdisplayresolution.getDisplayValue()}"></option>
+        </select>
+
+    <input type="submit" >
+	</form>
+</div>

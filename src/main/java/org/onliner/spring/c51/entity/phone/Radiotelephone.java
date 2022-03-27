@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class Radiotelephones extends Phone {
+public class Radiotelephone extends Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +17,7 @@ public class Radiotelephones extends Phone {
     private BaseType baseType;
     private Screen screen;
 
-    public Radiotelephones(Material phoneCaseMaterial, Color phoneCaseColor, Brand brand, PhoneConnection phoneConnection, PhoneKit phoneKit, BaseType baseType, Screen screen) {
+    public Radiotelephone(Material phoneCaseMaterial, Color phoneCaseColor, Brand brand, PhoneConnection phoneConnection, PhoneKit phoneKit, BaseType baseType, Screen screen) {
         super(phoneCaseMaterial, phoneCaseColor, brand);
         this.phoneConnection = phoneConnection;
         this.phoneKit = phoneKit;
@@ -25,14 +25,14 @@ public class Radiotelephones extends Phone {
         this.screen = screen;
     }
 
-    public Radiotelephones(PhoneConnection phoneConnection, PhoneKit phoneKit, BaseType baseType, Screen screen) {
+    public Radiotelephone(PhoneConnection phoneConnection, PhoneKit phoneKit, BaseType baseType, Screen screen) {
         this.phoneConnection = phoneConnection;
         this.phoneKit = phoneKit;
         this.baseType = baseType;
         this.screen = screen;
     }
 
-    public Radiotelephones() {
+    public Radiotelephone() {
     }
 
     public Long getId() {

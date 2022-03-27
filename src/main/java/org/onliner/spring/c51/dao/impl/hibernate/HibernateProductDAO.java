@@ -43,7 +43,7 @@ public class HibernateProductDAO implements ProductDAO {
     @Override
     public Optional<Product> findByName(String name,String className) {
         Session session = sessionFactory.openSession();
-        Query<Product> findByName = session.createQuery("SELECT u FROM"+className+" u WHERE u.name = :name", Product.class);
+        Query<Product> findByName = session.createQuery("SELECT u FROM "+className+" u WHERE u.name = :name", Product.class);
         findByName.setParameter("name", name);
         Optional<Product> product = findByName.uniqueResultOptional();
         session.close();

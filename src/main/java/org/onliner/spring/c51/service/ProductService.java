@@ -2,8 +2,6 @@ package org.onliner.spring.c51.service;
 
 import org.onliner.spring.c51.dao.ProductDAO;
 import org.onliner.spring.c51.entity.Product;
-import org.onliner.spring.c51.entity.User;
-import org.onliner.spring.c51.entity.phone.Smartphone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,8 +17,8 @@ public class ProductService {
     }
 
     public boolean save(Product product){
-        System.out.println(product.getClass().getName());
-        if (productDAO.findByName(product.getName(), product.getClass().getName()).isPresent()) {
+        System.out.println(product.getClass().getSimpleName());
+        if (productDAO.findByName(product.getName(), product.getClass().getSimpleName()).isPresent()) {
             logger.info(this.getClass().getName() + " SIGNUP METHOD " + "Product with name " + product.getName() + " already exists!");
             return false;
         } else {
