@@ -1,0 +1,11 @@
+<div th:fragment="header">
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li th:if="${session.authenticatedUser != null and session.authenticatedUser.isAdmin}"><a href="/admin">Admin</a></li>
+            <li th:if="${session.authenticatedUser} == null"><a href="/user/signup">Sign Up</a></li>
+            <li th:if="${session.authenticatedUser} == null"><a href="/user/login">Log in</a></li>
+            <li th:if="${session.authenticatedUser} != null"><a href="/user/logout">Log out</a></li>
+        </ul>
+    </nav>
+</div>
