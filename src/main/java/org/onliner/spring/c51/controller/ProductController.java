@@ -21,10 +21,6 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-    @GetMapping
-    public String home (){
-        return "home";
-    }
 
     @GetMapping("/create")
     public ModelAndView getProductCreationTemplate(String type, ModelAndView modelAndView){

@@ -1,7 +1,6 @@
 package org.onliner.spring.c51.entity.phone;
 
 import org.onliner.spring.c51.enums.*;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

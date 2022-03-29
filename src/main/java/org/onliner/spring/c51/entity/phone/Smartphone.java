@@ -1,8 +1,6 @@
 package org.onliner.spring.c51.entity.phone;
-import org.onliner.spring.c51.entity.phone.Phone;
 
 import org.onliner.spring.c51.enums.*;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,7 +42,6 @@ public class Smartphone extends Phone{
     public Smartphone() {
 
     }
-
 
 
     public RAM getRam() {

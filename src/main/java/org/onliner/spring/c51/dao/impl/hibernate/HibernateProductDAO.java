@@ -2,15 +2,11 @@ package org.onliner.spring.c51.dao.impl.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import org.hibernate.query.Query;
 import org.onliner.spring.c51.dao.ProductDAO;
 import org.onliner.spring.c51.entity.Product;
-import org.onliner.spring.c51.entity.User;
-import org.onliner.spring.c51.entity.phone.Smartphone;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.io.Serializable;
 import java.util.Optional;
 

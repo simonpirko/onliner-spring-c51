@@ -17,9 +17,9 @@ public class ProductService {
     }
 
     public boolean save(Product product){
-        System.out.println(product.getClass().getSimpleName());
+
         if (productDAO.findByName(product.getName(), product.getClass().getSimpleName()).isPresent()) {
-            logger.info(this.getClass().getName() + " SIGNUP METHOD " + "Product with name " + product.getName() + " already exists!");
+            logger.info(this.getClass().getName() + " CREATE PRODUCT METHOD " + "Product with name " + product.getName() + " already exists!");
             return false;
         } else {
 
