@@ -4,8 +4,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@NamedQueries({
+        @NamedQuery(name = "Seller.exists", query = "SELECT s FROM Seller s " +
+                "WHERE s.stateRegistrationInformation.payerAccountNumber = :UNP"),
+        @NamedQuery(name = "Seller.findAll", query = "SELECT s FROM Seller s")
+})
 @Entity
-@Table(name = "seller")
+@Table
 public class Seller {
 
     @Id
