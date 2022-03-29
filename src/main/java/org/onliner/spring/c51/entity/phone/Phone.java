@@ -5,6 +5,7 @@ import org.onliner.spring.c51.enums.Color;
 import org.onliner.spring.c51.enums.Material;
 
 import javax.persistence.MappedSuperclass;
+import java.util.Objects;
 
 @MappedSuperclass
 public abstract class Phone extends Product {
@@ -57,6 +58,20 @@ public abstract class Phone extends Product {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Phone phone = (Phone) o;
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), modelName, phoneCaseMaterial, phoneCaseColor, brand);
+    }
+
+    @Override
     public String toString() {
         return "Phone{" +
                 "name" + getName() +
@@ -66,4 +81,5 @@ public abstract class Phone extends Product {
                 ", brand=" + brand +
                 '}';
     }
+
 }
