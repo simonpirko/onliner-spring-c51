@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,10 +24,9 @@ public class HibernateSellerDAO implements SellerDAO {
     @Override
     public boolean exists(Seller seller) {
         Session session = sessionFactory.openSession();
-        Query<Seller> exists = session.createQuery("SELECT s FROM Seller s " +
-                "WHERE s.stateRegistrationInformation.payerAccountNumber = :UNP", Seller.class);
-        exists.setParameter("UNP", seller.getStateRegistrationInformation().getPayerAccountNumber());
-        Optional<Seller> user = exists.uniqueResultOptional();
+        Query<Seller> namedQuery = session.createNamedQuery("Seller.exists", Seller.class);
+        namedQuery.setParameter("UNP", seller.getStateRegistrationInformation().getPayerAccountNumber());
+        Optional<Seller> user = namedQuery.uniqueResultOptional();
         session.close();
         return user.isPresent();
     }
@@ -37,5 +37,14 @@ public class HibernateSellerDAO implements SellerDAO {
         Serializable sellerResultId = session.save(seller);
         session.close();
         return sellerResultId != null;
+    }
+
+    @Override
+    public List<Seller> findAll() {
+        Session session = sessionFactory.openSession();
+        Query<Seller> namedQuery = session.createNamedQuery("Seller.findAll", Seller.class);
+        List<Seller> users = namedQuery.list();
+        session.close();
+        return users;
     }
 }
