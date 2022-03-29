@@ -1,8 +1,17 @@
 package org.onliner.spring.c51.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+@NamedQueries({
+        @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+        @NamedQuery(name = "User.findByEmailWithRoles", query = "SELECT u FROM User u JOIN FETCH u.roles WHERE u.email = :email"),
+        @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "User.findAllWithRoles", query = "SELECT u FROM User u JOIN FETCH u.roles r"),
+        @NamedQuery(name = "User.exists", query = "SELECT u FROM User u WHERE u.email = :email")
+})
 @Entity
 @Table(name = "users")
 public class User {
@@ -15,6 +24,11 @@ public class User {
     private String username;
     private String email;
     private String password;
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -26,6 +40,7 @@ public class User {
         this.username = builder.builderUsername;
         this.email = builder.builderEmail;
         this.password = builder.builderPassword;
+        this.roles = builder.builderRoles;
     }
 
     public long getId() {
@@ -76,6 +91,14 @@ public class User {
         this.password = password;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -87,6 +110,7 @@ public class User {
         private String builderUsername;
         private String builderEmail;
         private String builderPassword;
+        private Set<Role> builderRoles;
 
         public Builder() {
         }
@@ -121,6 +145,11 @@ public class User {
             return this;
         }
 
+        public Builder roles(Set<Role> roles) {
+            builderRoles = roles;
+            return this;
+        }
+
         public User build() {
             return new User(this);
         }
@@ -131,12 +160,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+        return Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, username, email, password);
+        return Objects.hash(email);
     }
 
     @Override
@@ -148,6 +177,16 @@ public class User {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", roles=" + roles +
                 '}';
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
+    public void removeRole(Role role) {
+        roles.remove(role);
+        role.getUsers().remove(this);
     }
 }

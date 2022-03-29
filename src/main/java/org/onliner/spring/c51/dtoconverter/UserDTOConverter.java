@@ -4,6 +4,8 @@ import org.onliner.spring.c51.dto.user.AuthenticatedUserDTO;
 import org.onliner.spring.c51.dto.user.UserSignupDTO;
 import org.onliner.spring.c51.entity.User;
 
+import java.util.HashSet;
+
 public class UserDTOConverter {
 
     public static UserSignupDTO convertToUserSignupDTOFromUser(User user) {
@@ -23,12 +25,14 @@ public class UserDTOConverter {
                 .username(userSignupDTO.getUsername())
                 .email(userSignupDTO.getEmail())
                 .password(userSignupDTO.getPassword())
+                .roles(new HashSet<>())
                 .build();
     }
 
     public static AuthenticatedUserDTO convertToAuthenticatedUserDTOFromUser(User user) {
         AuthenticatedUserDTO authenticatedUserDTO = new AuthenticatedUserDTO();
         authenticatedUserDTO.setId(user.getId());
+        authenticatedUserDTO.setRoles(user.getRoles());
         return authenticatedUserDTO;
     }
 }
