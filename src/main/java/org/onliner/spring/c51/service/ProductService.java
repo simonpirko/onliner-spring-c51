@@ -16,6 +16,10 @@ public class ProductService {
         this.productDAO = productDAO;
     }
 
+    public boolean exists(Product product){
+        return productDAO.exists(product);
+    }
+
     public boolean save(Product product){
 
         if (productDAO.findByName(product.getName(), product.getClass().getSimpleName()).isPresent()) {
