@@ -24,7 +24,12 @@ public class HibernateProductDAO implements ProductDAO {
 
     @Override
     public boolean exists(Product product) {
-        return false;
+        Session session = sessionFactory.openSession();
+        Query<Product> findByName = session.createQuery("SELECT pr FROM "+product.getClass().getSimpleName()+" pr WHERE pr.name = :name", Product.class);
+        findByName.setParameter("name", product.getName());
+        Optional<Product> productdb = findByName.uniqueResultOptional();
+        session.close();
+        return productdb.isPresent();
     }
 
     @Override
@@ -39,7 +44,7 @@ public class HibernateProductDAO implements ProductDAO {
     @Override
     public Optional<Product> findByName(String name,String className) {
         Session session = sessionFactory.openSession();
-        Query<Product> findByName = session.createQuery("SELECT u FROM "+className+" u WHERE u.name = :name", Product.class);
+        Query<Product> findByName = session.createQuery("SELECT pr FROM "+className+" pr WHERE pr.name = :name", Product.class);
         findByName.setParameter("name", name);
         Optional<Product> product = findByName.uniqueResultOptional();
         session.close();

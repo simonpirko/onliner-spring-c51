@@ -2,6 +2,8 @@ package org.onliner.spring.c51.controller;
 
 import org.onliner.spring.c51.entity.phone.Radiotelephone;
 import org.onliner.spring.c51.entity.phone.Smartphone;
+import org.onliner.spring.c51.enums.Brand;
+import org.onliner.spring.c51.enums.Screen;
 import org.onliner.spring.c51.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/product")

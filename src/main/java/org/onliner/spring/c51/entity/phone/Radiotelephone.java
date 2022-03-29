@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
+
 @Entity
 public class Radiotelephone extends Phone {
     @Id
@@ -69,5 +71,34 @@ public class Radiotelephone extends Phone {
 
     public void setScreen(Screen screen) {
         this.screen = screen;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Radiotelephone that = (Radiotelephone) o;
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id, phoneConnection, phoneKit, baseType, screen);
+    }
+
+    @Override
+    public String toString() {
+        return "Radiotelephone{" +
+                "name" + getName() +
+                ", id= " + id +
+                ", phoneCaseMaterial=" + getPhoneCaseMaterial() +
+                ", phoneCaseColor=" + getPhoneCaseColor() +
+                ", brand=" + getBrand() +
+                ", phoneConnection=" + phoneConnection +
+                ", phoneKit=" + phoneKit +
+                ", baseType=" + baseType +
+                ", screen=" + screen +
+                '}';
     }
 }
