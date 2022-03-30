@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Smartphones</title>
+</head>
+<body>
+
+    <header th:insert="fragment/header-fragment.html :: header">Header</header>
+
+    <div th:each="smartphone : ${products}">
+        <p th:text="${smartphone.name}"></p>
+        <p th:text="${smartphone.ram + ', ' + smartphone.storage + ', ' + smartphone.displayResolution
+                   + ', ' + smartphone.os + ', ' + smartphone.platform}"></p>
+        <br><br>
+    </div>
+
+</body>
+</html>

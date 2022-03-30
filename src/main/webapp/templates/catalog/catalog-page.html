@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalog</title>
+</head>
+<body>
+
+    <header th:insert="fragment/header-fragment.html :: header">Header</header>
+
+    <ul>
+        <li th:each="category : ${catalog}">
+            <p th:text="${category.key.name}"></p>
+            <ul>
+                <li th:each="subcategory : ${category.value}">
+                    <p th:text="${subcategory.key.name}"></p>
+                    <ul>
+                        <li th:each="type : ${subcategory.value}">
+                            <a th:href="@{${type.URL}}" th:text="${type.name}"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+</html>
