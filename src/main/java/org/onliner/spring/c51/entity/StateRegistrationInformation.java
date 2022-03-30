@@ -1,6 +1,6 @@
 package org.onliner.spring.c51.entity;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
+
 
 /**
  * legalEntityName - наименование юридического лица
