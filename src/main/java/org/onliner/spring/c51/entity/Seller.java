@@ -1,5 +1,7 @@
 package org.onliner.spring.c51.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -9,6 +11,11 @@ import java.util.Objects;
                 "WHERE s.stateRegistrationInformation.payerAccountNumber = :UNP"),
         @NamedQuery(name = "Seller.findAll", query = "SELECT s FROM Seller s")
 })
+@Data                                               // ONL-12 : lombok
+@NoArgsConstructor                                  // ONL-12 : lombok
+@AllArgsConstructor                                 // ONL-12 : lombok
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)   // ONL-12 : lombok
+@Builder                                            // ONL-12 : lombok
 @Entity
 @Table
 public class Seller {
@@ -19,73 +26,7 @@ public class Seller {
     private LocalDateTime creationDateTime = LocalDateTime.now();
     private LocalDateTime updateDateTime = LocalDateTime.now();
     @OneToOne(cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Include                      // ONL-12 : lombok
     private StateRegistrationInformation stateRegistrationInformation;
     private boolean verifiedSeller;
-
-    public Seller() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getCreationDateTime() {
-        return creationDateTime;
-    }
-
-    public void setCreationDateTime(LocalDateTime creationDateTime) {
-        this.creationDateTime = creationDateTime;
-    }
-
-    public LocalDateTime getUpdateDateTime() {
-        return updateDateTime;
-    }
-
-    public void setUpdateDateTime(LocalDateTime updateDateTime) {
-        this.updateDateTime = updateDateTime;
-    }
-
-    public StateRegistrationInformation getStateRegistrationInformation() {
-        return stateRegistrationInformation;
-    }
-
-    public void setStateRegistrationInformation(StateRegistrationInformation stateRegistrationInformation) {
-        this.stateRegistrationInformation = stateRegistrationInformation;
-    }
-
-    public boolean isVerifiedSeller() {
-        return verifiedSeller;
-    }
-
-    public void setVerifiedSeller(boolean verifiedSeller) {
-        this.verifiedSeller = verifiedSeller;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Seller seller = (Seller) o;
-        return Objects.equals(stateRegistrationInformation, seller.stateRegistrationInformation);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(stateRegistrationInformation);
-    }
-
-    @Override
-    public String toString() {
-        return "Seller{" +
-                "id=" + id +
-                ", creationDateTime=" + creationDateTime +
-                ", updateDateTime=" + updateDateTime +
-                ", stateRegistrationInformation=" + stateRegistrationInformation +
-                ", verifiedSeller=" + verifiedSeller +
-                '}';
-    }
 }
