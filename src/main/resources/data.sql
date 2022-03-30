@@ -8,3 +8,7 @@ INSERT INTO users_roles(user_id, role_id) VALUE (1, 1);
 
 INSERT INTO users(email, firstName, lastName, password, username) VALUE ('user@gmail.com', 'user', 'user', 'adMiN1', 'user');
 INSERT INTO users_roles(user_id, role_id) VALUE (2, 2);
+
+
+INSERT INTO smartphone(name, displayResolution, os, platform, ram, storage, price) VALUE ('Samsung Galaxy Z Flip3 5G 8GB/256GB (red)', 1, 2, 3, 4, 5, 12);
+INSERT INTO smartphone(name, displayResolution, os, platform, ram, storage, price) VALUE ('Samsung Galaxy Z Flip3 8G 16GB/500GB (green)', 1, 2, 3, 4, 5, 12);
