@@ -17,6 +17,7 @@ import java.util.Set;
 @NoArgsConstructor                                  // ONL-12 : lombok
 @AllArgsConstructor                                 // ONL-12 : lombok
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)   // ONL-12 : lombok
+@Builder
 @Entity
 @Table
 public class Role {

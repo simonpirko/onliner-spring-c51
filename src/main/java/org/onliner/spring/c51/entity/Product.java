@@ -1,15 +1,14 @@
 package org.onliner.spring.c51.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.MappedSuperclass;
-import java.util.Objects;
 
 @Data                                                   // ONL-12 : lombok
 @NoArgsConstructor                                      // ONL-12 : lombok
+@AllArgsConstructor                                     // ONL-12 : lombok
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)       // ONL-12 : lombok
+@Builder                                                // ONL-12 : lombok
 @MappedSuperclass
 public abstract class Product {
 

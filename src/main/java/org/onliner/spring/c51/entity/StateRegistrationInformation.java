@@ -1,9 +1,7 @@
 package org.onliner.spring.c51.entity;
 
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,7 +19,9 @@ import java.time.LocalDateTime;
 
 @Data                                                   // ONL-12 : lombok
 @NoArgsConstructor                                      // ONL-12 : lombok
+@AllArgsConstructor                                     // ONL-12 : lombok
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)       // ONL-12 : lombok
+@Builder                                                // ONL-12 : lombok
 @Entity
 @Table(name = "state_registration_information")
 public class StateRegistrationInformation {
@@ -43,14 +43,4 @@ public class StateRegistrationInformation {
     @OneToOne
     private Seller seller;
 
-    public StateRegistrationInformation(String legalEntityName, String stateRegistrationLegalEntityPlace,
-                                        int payerAccountNumber, LocalDate stateRegistrationDate,
-                                        String registrationAuthority, LocalDate entryTradeRegisterDate) {
-        this.legalEntityName = legalEntityName;
-        this.stateRegistrationLegalEntityPlace = stateRegistrationLegalEntityPlace;
-        this.payerAccountNumber = payerAccountNumber;
-        this.stateRegistrationDate = stateRegistrationDate;
-        this.registrationAuthority = registrationAuthority;
-        this.entryTradeRegisterDate = entryTradeRegisterDate;
-    }
 }
