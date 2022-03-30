@@ -1,62 +1,21 @@
 package org.onliner.spring.c51.entity;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
+@Data                                                   // ONL-12 : lombok
+@NoArgsConstructor                                      // ONL-12 : lombok
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)       // ONL-12 : lombok
 @MappedSuperclass
 public abstract class Product {
 
+    @EqualsAndHashCode.Include                          // ONL-12 : lombok
     private String name;
     private int price;
     private String seller;
 
-    public Product() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getSeller() {
-        return seller;
-    }
-
-    public void setSeller(String seller) {
-        this.seller = seller;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(name, product.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", seller='" + seller + '\'' +
-                '}';
-    }
 }
