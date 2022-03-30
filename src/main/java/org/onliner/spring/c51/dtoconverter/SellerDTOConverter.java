@@ -25,6 +25,8 @@ public class SellerDTOConverter {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate());
         seller.setStateRegistrationInformation(stateRegistrationInformation);
-        return seller;
+        return Seller.builder()
+                .stateRegistrationInformation(stateRegistrationInformation)
+                .build();
     }
 }

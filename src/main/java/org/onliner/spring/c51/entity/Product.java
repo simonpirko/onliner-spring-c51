@@ -1,6 +1,7 @@
 package org.onliner.spring.c51.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.MappedSuperclass;
 
@@ -8,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 @NoArgsConstructor                                      // ONL-12 : lombok
 @AllArgsConstructor                                     // ONL-12 : lombok
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)       // ONL-12 : lombok
-@Builder                                                // ONL-12 : lombok
+@SuperBuilder                                               // ONL-12 : lombok
 @MappedSuperclass
 public abstract class Product {
 
