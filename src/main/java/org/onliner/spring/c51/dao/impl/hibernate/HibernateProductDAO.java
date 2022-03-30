@@ -8,19 +8,17 @@ import org.onliner.spring.c51.entity.Product;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 @Transactional
 public class HibernateProductDAO implements ProductDAO {
-
     private final SessionFactory sessionFactory;
 
     public HibernateProductDAO(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
-
 
     @Override
     public boolean exists(Product product) {
@@ -42,6 +40,11 @@ public class HibernateProductDAO implements ProductDAO {
     }
 
     @Override
+    public List<Product> findAll() {
+        return null;
+    }
+
+    @Override
     public Optional<Product> findByName(String name,String className) {
         Session session = sessionFactory.openSession();
         Query<Product> findByName = session.createQuery("SELECT pr FROM "+className+" pr WHERE pr.name = :name", Product.class);
@@ -49,5 +52,14 @@ public class HibernateProductDAO implements ProductDAO {
         Optional<Product> product = findByName.uniqueResultOptional();
         session.close();
         return product;
+    }
+
+    @Override
+    public List<Product> findAllByTableName(String name) {
+        Session session = sessionFactory.openSession();
+        Query<Product> query = session.createQuery("SELECT pr FROM " + name +" pr", Product.class);
+        List<Product> products = query.list();
+        session.close();
+        return products;
     }
 }
