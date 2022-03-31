@@ -8,6 +8,7 @@ import java.time.ZoneId;
 
 public class SellerDTOConverter {
 
+    // ONL-12 : lombok
     public static Seller convertToSellerFromSellerDTOConverter(SellerSignupDTO sellerSignupDTO) {
         Seller seller = new Seller();
 
@@ -24,7 +25,6 @@ public class SellerDTOConverter {
                 .toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate());
-        seller.setStateRegistrationInformation(stateRegistrationInformation);
         return Seller.builder()
                 .stateRegistrationInformation(stateRegistrationInformation)
                 .build();

@@ -1,26 +1,25 @@
 package org.onliner.spring.c51.dto.user;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.onliner.spring.c51.entity.Role;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
+@Data                                   // ONL-12 : lombok
+@NoArgsConstructor                      // ONL-12 : lombok
+@AllArgsConstructor                     // ONL-12 : lombok
+@Builder                                // ONL-12 : lombok
 public class AuthenticatedUserDTO {
     private long id;
     private Set<Role> roles;
     private boolean admin;
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
 
     public void setRoles(Set<Role> roles) {
         if (roles != null && !roles.isEmpty()) {
@@ -29,11 +28,5 @@ public class AuthenticatedUserDTO {
         this.roles = roles;
     }
 
-    public boolean isAdmin() {
-        return admin;
-    }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
 }
