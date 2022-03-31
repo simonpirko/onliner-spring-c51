@@ -30,11 +30,11 @@ public class UserDTOConverter {
                 .build();
     }
 
-    // ONL-12 : lombok
+
     public static AuthenticatedUserDTO convertToAuthenticatedUserDTOFromUser(User user) {
-        return AuthenticatedUserDTO.builder()
-                .id(user.getId())
-                .roles(user.getRoles())
-                .build();
+        AuthenticatedUserDTO authenticatedUserDTO = new AuthenticatedUserDTO();
+        authenticatedUserDTO.setId(user.getId());
+        authenticatedUserDTO.setRoles(user.getRoles());
+        return authenticatedUserDTO;
     }
 }
