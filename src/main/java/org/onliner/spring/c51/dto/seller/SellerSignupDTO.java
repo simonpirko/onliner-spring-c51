@@ -1,5 +1,9 @@
 package org.onliner.spring.c51.dto.seller;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,6 +13,10 @@ import javax.validation.constraints.Pattern;
 
 import java.util.Date;
 
+@Data                                   // ONL-12 : lombok
+@NoArgsConstructor                      // ONL-12 : lombok
+@AllArgsConstructor                     // ONL-12 : lombok
+@Builder                                // ONL-12 : lombok
 public class SellerSignupDTO {
     @NotBlank
     @NotEmpty
@@ -42,51 +50,4 @@ public class SellerSignupDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date entryTradeRegisterDate;
 
-    public String getLegalEntityName() {
-        return legalEntityName;
-    }
-
-    public void setLegalEntityName(String legalEntityName) {
-        this.legalEntityName = legalEntityName;
-    }
-
-    public String getStateRegistrationLegalEntityPlace() {
-        return stateRegistrationLegalEntityPlace;
-    }
-
-    public void setStateRegistrationLegalEntityPlace(String stateRegistrationLegalEntityPlace) {
-        this.stateRegistrationLegalEntityPlace = stateRegistrationLegalEntityPlace;
-    }
-
-    public String getPayerAccountNumber() {
-        return payerAccountNumber;
-    }
-
-    public void setPayerAccountNumber(String payerAccountNumber) {
-        this.payerAccountNumber = payerAccountNumber;
-    }
-
-    public Date getStateRegistrationDate() {
-        return stateRegistrationDate;
-    }
-
-    public void setStateRegistrationDate(Date stateRegistrationDate) {
-        this.stateRegistrationDate = stateRegistrationDate;
-    }
-
-    public String getRegistrationAuthority() {
-        return registrationAuthority;
-    }
-
-    public void setRegistrationAuthority(String registrationAuthority) {
-        this.registrationAuthority = registrationAuthority;
-    }
-
-    public Date getEntryTradeRegisterDate() {
-        return entryTradeRegisterDate;
-    }
-
-    public void setEntryTradeRegisterDate(Date entryTradeRegisterDate) {
-        this.entryTradeRegisterDate = entryTradeRegisterDate;
-    }
 }

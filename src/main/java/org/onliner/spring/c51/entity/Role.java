@@ -1,5 +1,7 @@
 package org.onliner.spring.c51.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -10,6 +12,12 @@ import java.util.Set;
         @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name"),
         @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
 })
+
+@Data                                               // ONL-12 : lombok
+@NoArgsConstructor                                  // ONL-12 : lombok
+@AllArgsConstructor                                 // ONL-12 : lombok
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)   // ONL-12 : lombok
+@Builder
 @Entity
 @Table
 public class Role {
@@ -20,62 +28,16 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @EqualsAndHashCode.Include                      // ONL-12 : lombok
     private String name;
 
     @ManyToMany(mappedBy = "roles")
+    @ToString.Exclude                               // ONL-12 : lombok
     private Set<User> users = new HashSet<>();
 
-    public Role() {
-    }
 
     public Role(String name) {
         this.name = name;
     }
 
-    public Role(long id, String name, Set<User> users) {
-        this.id = id;
-        this.name = name;
-        this.users = users;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return Objects.equals(name, role.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

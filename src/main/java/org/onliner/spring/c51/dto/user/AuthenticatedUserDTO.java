@@ -1,27 +1,27 @@
 package org.onliner.spring.c51.dto.user;
 
+import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import org.onliner.spring.c51.entity.Role;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
+// ONL-12 : lombok
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class AuthenticatedUserDTO {
     private long id;
+    @Setter(AccessLevel.NONE)
     private Set<Role> roles;
     private boolean admin;
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
+    // ONL-12 : lombok
     public void setRoles(Set<Role> roles) {
         if (roles != null && !roles.isEmpty()) {
             admin = roles.stream().map(Role::getName).anyMatch(Predicate.isEqual(Role.ROLE_ADMIN));
@@ -29,11 +29,5 @@ public class AuthenticatedUserDTO {
         this.roles = roles;
     }
 
-    public boolean isAdmin() {
-        return admin;
-    }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
 }

@@ -8,23 +8,23 @@ import java.time.ZoneId;
 
 public class SellerDTOConverter {
 
+    // ONL-12 : lombok
     public static Seller convertToSellerFromSellerDTOConverter(SellerSignupDTO sellerSignupDTO) {
-        Seller seller = new Seller();
-
-        StateRegistrationInformation stateRegistrationInformation = new StateRegistrationInformation();
-        stateRegistrationInformation.setLegalEntityName(sellerSignupDTO.getLegalEntityName());
-        stateRegistrationInformation.setStateRegistrationLegalEntityPlace(sellerSignupDTO.getStateRegistrationLegalEntityPlace());
-        stateRegistrationInformation.setPayerAccountNumber(Integer.parseInt(sellerSignupDTO.getPayerAccountNumber()));
-        stateRegistrationInformation.setStateRegistrationDate(sellerSignupDTO.getStateRegistrationDate()
-                        .toInstant()
-                        .atZone(ZoneId.systemDefault())
-                        .toLocalDate());
-        stateRegistrationInformation.setRegistrationAuthority(sellerSignupDTO.getRegistrationAuthority());
-        stateRegistrationInformation.setEntryTradeRegisterDate(sellerSignupDTO.getEntryTradeRegisterDate()
-                .toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate());
-        seller.setStateRegistrationInformation(stateRegistrationInformation);
-        return seller;
+        return Seller.builder()
+                .stateRegistrationInformation(StateRegistrationInformation.builder()
+                        .legalEntityName(sellerSignupDTO.getLegalEntityName())
+                        .stateRegistrationLegalEntityPlace(sellerSignupDTO.getStateRegistrationLegalEntityPlace())
+                        .payerAccountNumber(Integer.parseInt(sellerSignupDTO.getPayerAccountNumber()))
+                        .stateRegistrationDate(sellerSignupDTO.getStateRegistrationDate()
+                                .toInstant()
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate())
+                        .registrationAuthority(sellerSignupDTO.getRegistrationAuthority())
+                        .entryTradeRegisterDate(sellerSignupDTO.getEntryTradeRegisterDate()
+                                .toInstant()
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate())
+                        .build())
+                .build();
     }
 }

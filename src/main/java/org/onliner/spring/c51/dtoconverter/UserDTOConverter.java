@@ -8,14 +8,15 @@ import java.util.HashSet;
 
 public class UserDTOConverter {
 
+    // ONL-12 : lombok
     public static UserSignupDTO convertToUserSignupDTOFromUser(User user) {
-        UserSignupDTO userSignupDTO = new UserSignupDTO();
-        userSignupDTO.setFirstName(user.getFirstName());
-        userSignupDTO.setLastName(user.getLastName());
-        userSignupDTO.setUsername(user.getUsername());
-        userSignupDTO.setEmail(user.getEmail());
-        userSignupDTO.setPassword(user.getPassword());
-        return userSignupDTO;
+        return UserSignupDTO.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .build();
     }
 
     public static User convertToUserFromUserSignupDTO(UserSignupDTO userSignupDTO) {
@@ -28,6 +29,7 @@ public class UserDTOConverter {
                 .roles(new HashSet<>())
                 .build();
     }
+
 
     public static AuthenticatedUserDTO convertToAuthenticatedUserDTOFromUser(User user) {
         AuthenticatedUserDTO authenticatedUserDTO = new AuthenticatedUserDTO();
