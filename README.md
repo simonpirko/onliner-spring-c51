@@ -9,36 +9,36 @@ It copies the functionality of this [site](https://catalog.onliner.by/).
 
 ## Dependencies
 
-Spring WebMVC
-Spring ORM
-Java Servlet API
-MySQL Connector
-Hibernate ORM Hibernate Core
-Tomcat DBCP
-Thymeleaf
-Hibernate Validator Engine
-slf4j + log4j
-JUnit 5
-Mockito JUnit Jupiter 
-Hamcrest
-String Test
+* Spring WebMVC
+* Spring ORM
+* Java Servlet API
+* MySQL Connector
+* Hibernate ORM Hibernate Core
+* Tomcat DBCP
+* Thymeleaf
+* Hibernate Validator Engine
+* slf4j + log4j
+* JUnit 5
+* Mockito JUnit Jupiter
+* Hamcrest
+* String Test
 
 ## Features
 
-1. Seller and user registration
-2. User authentication and authorization
-3. Assigning a role to a user
-3. Product creation
-4. Viewing the product catalog
+* Seller and user registration
+* User authentication and authorization
+* Assigning a role to a user
+* Product creation
+* Viewing the product catalog
 
 # Installation
 
 ## Requirements
 
-JDK 11
-Maven
-MySQL 5+
-Apache Tomcat 9
+* JDK 11
+* Maven
+* MySQL 5+
+* Apache Tomcat 9
 
 ## Specific steps
 
@@ -48,19 +48,23 @@ Clone the repository
 git clone https://github.com/simonpirko/onliner-spring-c51.git
 ```
 
-Set up application server
+Download Apache Tomcat from [site](https://tomcat.apache.org/download-90.cgi) and set up application server.
+
+Create a database and set up datasourse in datasourse.properties.
 
 ```bash
-URL: "http://localhost:8080/"
-Application context: "/"
+datasource.driver=com.mysql.cj.jdbc.Driver
+datasource.url=jdbc:mysql://<host:port>/<database-name>
+datasource.username=<username>
+datasource.password=<password>
 ```
 
-Create a database 
+Change the path to the log file in log4j.properties.
 
 ```bash
-Name: onliner_clone_db
+log4j.appender.USER-SERVICE.File=<path-to-log-file>
 ```
 
-Set up datasourse in HibernateConfiguration class
+# Project status
 
-Change the path to the log file in log4j.properties
+Active
