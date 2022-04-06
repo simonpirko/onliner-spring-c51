@@ -21,7 +21,7 @@ public class HibernateConfiguration {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/onliner_clone_db");
         dataSource.setUsername("root");
-        dataSource.setPassword("admin");
+        dataSource.setPassword("root");
         return dataSource;
     }
 
