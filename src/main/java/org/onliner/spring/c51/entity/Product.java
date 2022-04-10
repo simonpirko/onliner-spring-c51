@@ -1,21 +1,45 @@
 package org.onliner.spring.c51.entity;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data                                                   // ONL-12 : lombok
-@NoArgsConstructor                                      // ONL-12 : lombok
-@AllArgsConstructor                                     // ONL-12 : lombok
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)       // ONL-12 : lombok
-@SuperBuilder                                               // ONL-12 : lombok
-@MappedSuperclass
-public abstract class Product {
+@NamedQueries({
+        @NamedQuery(name = "Product.exists", query = "SELECT p FROM Product p WHERE p.name = :name"),
+        @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
+        @NamedQuery(name = "Product.findAllByProductType", query = "SELECT p FROM Product p WHERE p.productType = :productType"),
+        @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p JOIN FETCH p.manufacturer JOIN FETCH p.pairPropertyValueList WHERE p.id = :id")
+})
 
-    @EqualsAndHashCode.Include                          // ONL-12 : lombok
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private long id;
+
     private String name;
-    private int price;
-    private String seller;
 
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturer manufacturer;
+
+    @ManyToOne
+    @JoinColumn(name = "product_type_id")
+    private ProductType productType;
+
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(name = "products_pairs_attribute_value",
+            joinColumns = @JoinColumn(name="product_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name="pair_attribute_value_id", referencedColumnName="id")
+    )
+    private List<PairPropertyValue> pairPropertyValueList = new ArrayList<>();
 }
