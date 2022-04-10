@@ -16,7 +16,7 @@
                     <p th:text="${subcategory.key.name}"></p>
                     <ul>
                         <li th:each="type : ${subcategory.value}">
-                            <a th:href="@{${type.URL}}" th:text="${type.name}"></a>
+                            <a th:href="@{'/catalog/' + ${type.name.toLowerCase()}}" th:text="${type.name}"></a>
                         </li>
                     </ul>
                 </li>
