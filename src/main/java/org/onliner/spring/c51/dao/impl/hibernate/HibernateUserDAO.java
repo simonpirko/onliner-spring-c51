@@ -34,8 +34,8 @@ public class HibernateUserDAO implements UserDAO {
 
     @Override
     public boolean save(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.persist(user);
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.persist(user);
         return true;
     }
 
@@ -46,6 +46,14 @@ public class HibernateUserDAO implements UserDAO {
         List<User> users = namedQuery.list();
         session.close();
         return users;
+    }
+
+    @Override
+    public Optional<User> findById(long id) {
+        Session session = sessionFactory.openSession();
+        User user = session.get(User.class, id);
+        session.close();
+        return Optional.ofNullable(user);
     }
 
     @Override
