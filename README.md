@@ -30,6 +30,7 @@ It copies the functionality of this [site](https://catalog.onliner.by/).
 * Assigning a role to a user
 * Product creation
 * Viewing the product catalog
+* Viewing product details
 
 # Installation
 
@@ -53,7 +54,6 @@ Download Apache Tomcat from [site](https://tomcat.apache.org/download-90.cgi) an
 Create a database and set up datasourse in datasourse.properties.
 
 ```bash
-datasource.driver=com.mysql.cj.jdbc.Driver
 datasource.url=jdbc:mysql://<host:port>/<database-name>
 datasource.username=<username>
 datasource.password=<password>

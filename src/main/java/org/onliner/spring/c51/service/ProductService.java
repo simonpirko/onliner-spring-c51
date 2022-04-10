@@ -1,27 +1,30 @@
 package org.onliner.spring.c51.service;
 
-import com.google.protobuf.MapEntry;
 import org.onliner.spring.c51.dao.ProductDAO;
+import org.onliner.spring.c51.dto.product.ProductCatalogDTO;
+import org.onliner.spring.c51.dto.product.ProductDetailsDTO;
+import org.onliner.spring.c51.dtoconverter.ProductDTOConverter;
 import org.onliner.spring.c51.entity.Product;
-import org.onliner.spring.c51.enums.ProductCategory;
-import org.onliner.spring.c51.enums.ProductSubcategory;
-import org.onliner.spring.c51.enums.ProductType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.onliner.spring.c51.entity.ProductType;
+import org.onliner.spring.c51.enums.ProductTypes;
+import org.onliner.spring.c51.exception.ProductNotFoundException;
+import org.onliner.spring.c51.exception.ProductTypeNotFound;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ProductService {
     private final ProductDAO productDAO;
-    private final Logger logger = LoggerFactory.getLogger(ProductService.class);
+    private final ProductTypeService productTypeService;
 
-    public ProductService(ProductDAO productDAO) {
+    public ProductService(ProductDAO productDAO, ProductTypeService productTypeService) {
         this.productDAO = productDAO;
+        this.productTypeService = productTypeService;
     }
 
     public boolean exists(Product product){
@@ -29,26 +32,27 @@ public class ProductService {
     }
 
     public boolean save(Product product){
+        return productDAO.save(product);
+    }
 
-        if (productDAO.findByName(product.getName(), product.getClass().getSimpleName()).isPresent()) {
-            logger.info(this.getClass().getName() + " CREATE PRODUCT METHOD " + "Product with name " + product.getName() + " already exists!");
-            return false;
+    public List<ProductCatalogDTO> findAllByProductType(ProductTypes productTypes) {
+        Optional<ProductType> foundProductType =
+                productTypeService.findByProductTypeName(productTypes.name());
+        if (foundProductType.isPresent()) {
+            return productDAO.findAllByProductType(foundProductType.get()).stream()
+                    .map(ProductDTOConverter::convertToProductCatalogDTOFromProduct)
+                    .collect(Collectors.toList());
         } else {
-
-            return productDAO.save(product);
+            throw new ProductTypeNotFound();
         }
     }
 
-    public Map<ProductCategory, Map<ProductSubcategory, List<ProductType>>> getCatalog() {
-        return Arrays.stream(ProductType.values())
-                .collect(Collectors.groupingBy(ProductType::getProductSubcategory))
-                .entrySet()
-                .stream()
-                .collect(Collectors.groupingBy(entry -> entry.getKey().getProductCategory(),
-                        Collectors.mapping(Function.identity(), Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue ))));
-    }
-
-    public List<Product> findAllByProductType(ProductType productType) {
-        return productDAO.findAllByTableName(productType.getName());
+    public ProductDetailsDTO getProductDetailsByProductId(long id) {
+        Optional<Product> foundProduct = productDAO.findById(id);
+        if (foundProduct.isPresent()) {
+            return ProductDTOConverter.convertToProductDetailsDTOFromProduct(foundProduct.get());
+        } else {
+            throw new ProductNotFoundException();
+        }
     }
 }

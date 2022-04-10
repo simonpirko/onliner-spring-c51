@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+
+    <div th:each="detail : ${productDetails}">
+
+        <p th:text="${detail.productName}"></p>
+
+        <p th:text="${detail.manufacturerDetails}"></p>
+
+        <div th:each="group : ${detail.productDescription}">
+            <p th:text="${group.key}"></p>
+            <div th:each="pairPropertyValue : ${group.value}">
+                <p th:text="${pairPropertyValue.key}"></p>
+                <p th:text="${pairPropertyValue.value}"></p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

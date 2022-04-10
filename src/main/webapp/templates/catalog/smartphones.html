@@ -9,10 +9,11 @@
     <header th:insert="fragment/header-fragment.html :: header">Header</header>
 
     <div th:each="smartphone : ${products}">
-        <p th:text="${smartphone.name}"></p>
-        <p th:text="${smartphone.ram + ', ' + smartphone.storage + ', ' + smartphone.displayResolution
-                   + ', ' + smartphone.os + ', ' + smartphone.platform}"></p>
+
+        <a th:href="@{/product/{manufacturer}/{id} (manufacturer=${smartphone.manufacturerName}, id=${smartphone.id})}"
+           th:text="${smartphone.name}"></a>
         <br><br>
+
     </div>
 
 </body>

@@ -30,8 +30,8 @@ public class HibernateRoleDAO implements RoleDAO {
 
     @Override
     public boolean save(Role role) {
-        Session session = sessionFactory.getCurrentSession();
-        session.persist(role);
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.persist(role);
         return true;
     }
 
@@ -42,6 +42,14 @@ public class HibernateRoleDAO implements RoleDAO {
         List<Role> roles = namedQuery.list();
         session.close();
         return roles;
+    }
+
+    @Override
+    public Optional<Role> findById(long id) {
+        Session session = sessionFactory.openSession();
+        Role role = session.get(Role.class, id);
+        session.close();
+        return Optional.ofNullable(role);
     }
 
     @Override
