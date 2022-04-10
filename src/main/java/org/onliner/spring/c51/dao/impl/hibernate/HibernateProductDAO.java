@@ -5,14 +5,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.onliner.spring.c51.dao.ProductDAO;
 import org.onliner.spring.c51.entity.Product;
+import org.onliner.spring.c51.entity.ProductType;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-import java.io.Serializable;
+
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public class HibernateProductDAO implements ProductDAO {
     private final SessionFactory sessionFactory;
 
@@ -23,42 +22,45 @@ public class HibernateProductDAO implements ProductDAO {
     @Override
     public boolean exists(Product product) {
         Session session = sessionFactory.openSession();
-        Query<Product> findByName = session.createQuery("SELECT pr FROM "+product.getClass().getSimpleName()+" pr WHERE pr.name = :name", Product.class);
-        findByName.setParameter("name", product.getName());
-        Optional<Product> productdb = findByName.uniqueResultOptional();
+        Query<Product> namedQuery = session.createNamedQuery("Product.exists", Product.class);
+        namedQuery.setParameter("name", product.getName());
+        Optional<Product> foundProduct = namedQuery.getResultStream().findFirst();
         session.close();
-        return productdb.isPresent();
+        return foundProduct.isPresent();
     }
 
     @Override
     public boolean save(Product product) {
-        Session session = sessionFactory.openSession();
-        Serializable resultId = session.save(product);
-        session.close();
-        return resultId != null;
-
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.persist(product);
+        return true;
     }
 
     @Override
     public List<Product> findAll() {
-        return null;
+        Session session = sessionFactory.openSession();
+        Query<Product> namedQuery = session.createNamedQuery("Product.findAll", Product.class);
+        List<Product> products = namedQuery.list();
+        session.close();
+        return products;
     }
 
     @Override
-    public Optional<Product> findByName(String name,String className) {
+    public Optional<Product> findById(long id) {
         Session session = sessionFactory.openSession();
-        Query<Product> findByName = session.createQuery("SELECT pr FROM "+className+" pr WHERE pr.name = :name", Product.class);
-        findByName.setParameter("name", name);
-        Optional<Product> product = findByName.uniqueResultOptional();
+        Query<Product> namedQuery = session.createNamedQuery("Product.findById", Product.class);
+        namedQuery.setParameter("id", id);
+        Optional<Product> product = namedQuery.uniqueResultOptional();
         session.close();
         return product;
     }
 
     @Override
-    public List<Product> findAllByTableName(String name) {
+    public List<Product> findAllByProductType(ProductType productType) {
         Session session = sessionFactory.openSession();
-        Query<Product> query = session.createQuery("SELECT pr FROM " + name +" pr", Product.class);
-        List<Product> products = query.list();
+        Query<Product> namedQuery = session.createNamedQuery("Product.findAllByProductType", Product.class);
+        namedQuery.setParameter("productType", productType);
+        List<Product> products = namedQuery.list();
         session.close();
         return products;
     }
