@@ -66,3 +66,4 @@ INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) 
 
 
 
+
