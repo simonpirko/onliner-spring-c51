@@ -13,13 +13,14 @@ import java.util.Set;
         @NamedQuery(name = "User.findAllWithRoles", query = "SELECT u FROM User u JOIN FETCH u.roles r"),
         @NamedQuery(name = "User.exists", query = "SELECT u FROM User u WHERE u.email = :email")
 })
-@Data                                                   // ONL-12 : lombok
-@NoArgsConstructor                                      // ONL-12 : lombok
-@AllArgsConstructor                                     // ONL-12 : lombok
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)       // ONL-12 : lombok
-@Builder                                                // ONL-12 : lombok
+
 @Entity
 @Table(name = "users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 public class User {
 
     @Id
@@ -28,7 +29,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String username;
-    @EqualsAndHashCode.Include                          // ONL-12 : lombok
+    @EqualsAndHashCode.Include
     private String email;
     private String password;
     @ManyToMany(cascade = {CascadeType.MERGE})
@@ -36,6 +37,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles = new HashSet<>();
+
 
     public void addRole(Role role) {
         roles.add(role);
