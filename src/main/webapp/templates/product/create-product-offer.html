@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product offer</title>
+</head>
+<body>
+
+    <form th:action="@{/product/{id}/create-offer (id=${sellerOffer.productId})}" method="post" th:object="${sellerOffer}">
+
+        <label th:for="price">Price:</label>
+        <input type="text" id="price" th:field="*{price}"/>
+        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Incorrect price</p>
+        <br><br>
+
+        <input type="submit"/>
+
+    </form>
+
+</body>
+</html>
