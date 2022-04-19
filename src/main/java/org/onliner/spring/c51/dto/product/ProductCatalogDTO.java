@@ -11,4 +11,5 @@ public class ProductCatalogDTO {
     private long id;
     private String name;
     private String manufacturerName;
+    private int sellerOffersNumber;
 }

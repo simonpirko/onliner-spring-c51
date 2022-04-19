@@ -15,6 +15,7 @@ public class ProductDTOConverter {
                 .id(product.getId())
                 .name(product.getName())
                 .manufacturerName(product.getManufacturer().getName())
+                .sellerOffersNumber(product.getSellerOffers().size())
                 .build();
     }
 
