@@ -13,31 +13,26 @@ import java.util.Set;
         @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
 })
 
-@Data                                               // ONL-12 : lombok
-@NoArgsConstructor                                  // ONL-12 : lombok
-@AllArgsConstructor                                 // ONL-12 : lombok
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)   // ONL-12 : lombok
-@Builder
 @Entity
 @Table
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 public class Role {
     public static final String ROLE_USER = "USER";
     public static final String ROLE_ADMIN = "ADMIN";
+    public static final String ROLE_MANAGER = "MANAGER";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @EqualsAndHashCode.Include                      // ONL-12 : lombok
+    @EqualsAndHashCode.Include
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    @ToString.Exclude                               // ONL-12 : lombok
+    @ToString.Exclude
     private Set<User> users = new HashSet<>();
-
-
-    public Role(String name) {
-        this.name = name;
-    }
-
 }

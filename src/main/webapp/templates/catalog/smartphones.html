@@ -12,6 +12,9 @@
 
         <a th:href="@{/product/{manufacturer}/{id} (manufacturer=${smartphone.manufacturerName}, id=${smartphone.id})}"
            th:text="${smartphone.name}"></a>
+        <a th:if="${session.authenticatedUser != null and session.authenticatedUser.isManager}"
+           th:href="@{/product/{id}/create-offer (id=${smartphone.id})}">Create offer</a>
+        <a th:href="@{/product/{id}/seller-offers (id=${smartphone.id})}" th:text="${smartphone.sellerOffersNumber + ' offer'}"></a>
         <br><br>
 
     </div>

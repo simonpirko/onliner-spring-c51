@@ -7,8 +7,7 @@ import org.onliner.spring.c51.dtoconverter.ProductDTOConverter;
 import org.onliner.spring.c51.entity.Product;
 import org.onliner.spring.c51.entity.ProductType;
 import org.onliner.spring.c51.enums.ProductTypes;
-import org.onliner.spring.c51.exception.ProductNotFoundException;
-import org.onliner.spring.c51.exception.ProductTypeNotFound;
+import org.onliner.spring.c51.exception.BusinessEntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,11 +38,12 @@ public class ProductService {
         Optional<ProductType> foundProductType =
                 productTypeService.findByProductTypeName(productTypes.name());
         if (foundProductType.isPresent()) {
-            return productDAO.findAllByProductType(foundProductType.get()).stream()
+            List<Product> allByProductType = productDAO.findAllByProductType(foundProductType.get());
+            return allByProductType.stream()
                     .map(ProductDTOConverter::convertToProductCatalogDTOFromProduct)
                     .collect(Collectors.toList());
         } else {
-            throw new ProductTypeNotFound();
+            throw new BusinessEntityNotFoundException("No product type with this name!");
         }
     }
 
@@ -52,7 +52,7 @@ public class ProductService {
         if (foundProduct.isPresent()) {
             return ProductDTOConverter.convertToProductDetailsDTOFromProduct(foundProduct.get());
         } else {
-            throw new ProductNotFoundException();
+            throw new BusinessEntityNotFoundException("No product with this ID");
         }
     }
 }

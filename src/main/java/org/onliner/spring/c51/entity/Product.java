@@ -4,13 +4,16 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @NamedQueries({
         @NamedQuery(name = "Product.exists", query = "SELECT p FROM Product p WHERE p.name = :name"),
         @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-        @NamedQuery(name = "Product.findAllByProductType", query = "SELECT p FROM Product p WHERE p.productType = :productType"),
-        @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p JOIN FETCH p.manufacturer JOIN FETCH p.pairPropertyValueList WHERE p.id = :id")
+        @NamedQuery(name = "Product.findAllByProductType", query = "SELECT DISTINCT p FROM Product p LEFT JOIN FETCH p.sellerOffers so WHERE p.productType = :productType"),
+        @NamedQuery(name = "Product.findById",
+                query = "SELECT p FROM Product p JOIN FETCH p.manufacturer JOIN FETCH p.pairPropertyValueList LEFT JOIN FETCH p.sellerOffers WHERE p.id = :id")
 })
 
 @Entity
@@ -42,4 +45,18 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name="pair_attribute_value_id", referencedColumnName="id")
     )
     private List<PairPropertyValue> pairPropertyValueList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+    private Set<SellerOffer> sellerOffers = new HashSet<>();
+
+
+    public void addSellerOffer(SellerOffer sellerOffer) {
+        sellerOffers.add(sellerOffer);
+        sellerOffer.setProduct(this);
+    }
+
+    public void removeSellerOffer(SellerOffer sellerOffer) {
+        sellerOffers.remove(sellerOffer);
+        sellerOffer.setProduct(null);
+    }
 }

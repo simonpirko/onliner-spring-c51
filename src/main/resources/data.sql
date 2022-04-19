@@ -9,6 +9,15 @@ INSERT INTO users_roles(user_id, role_id) VALUE (1, 1);
 INSERT INTO users(email, firstName, lastName, password, username) VALUE ('user@gmail.com', 'user', 'user', 'adMiN1', 'user');
 INSERT INTO users_roles(user_id, role_id) VALUE (2, 2);
 
+INSERT INTO users(email, firstName, lastName, password, username) VALUE ('manager@gmail.com', 'manager', 'manager', 'adMiN1', 'manager');
+INSERT INTO users_roles(user_id, role_id) VALUE (3, 3);
+
+INSERT INTO users(email, firstName, lastName, password, username) VALUE ('manager1@gmail.com', 'manager1', 'manager1', 'adMiN1', 'manager1');
+INSERT INTO users_roles(user_id, role_id) VALUE (4, 3);
+
+INSERT INTO users(email, firstName, lastName, password, username) VALUE ('manager2@gmail.com', 'manager2', 'manager2', 'adMiN1', 'manager2');
+INSERT INTO users_roles(user_id, role_id) VALUE (5, 3);
+
 # PRODUCT CATEGORY
 INSERT INTO product_category(name) VALUES ('ELECTRONICS');
 INSERT INTO product_category(name) VALUES ('COMPUTERS AND NETWORKS');
@@ -57,3 +66,15 @@ INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) 
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (2, 2),(2, 3),(2, 6),(2, 10);
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (3, 1),(3, 11),(3, 12);
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (4, 2),(4, 11),(4, 13);
+
+# STATE REGISTRATION INFORMATION
+INSERT INTO state_registration_information(entryTradeRegisterDate, legalEntityName, payerAccountNumber, registrationAuthority, stateRegistrationDate, stateRegistrationLegalEntityPlace) VALUE ('2001-01-01', 'OOO TTTT', 123456789, 'Minsk gov', '2001-02-02', 'Minsk');
+INSERT INTO state_registration_information(entryTradeRegisterDate, legalEntityName, payerAccountNumber, registrationAuthority, stateRegistrationDate, stateRegistrationLegalEntityPlace) VALUE ('2002-02-02', 'OOO HHHH', 987654321, 'Minsk gov', '2002-03-03', 'Minsk');
+
+# SELLER
+INSERT INTO seller(verifiedSeller, stateRegistrationInformation_id) VALUE (true, 1);
+INSERT INTO seller(verifiedSeller, stateRegistrationInformation_id) VALUE (true, 2);
+
+# SELLER MANAGERS
+INSERT INTO seller_users(seller_id, managers_id) VALUES (1, 3),(1, 4);
+INSERT INTO seller_users(seller_id, managers_id) VALUES (2, 5);
