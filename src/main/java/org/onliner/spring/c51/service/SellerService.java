@@ -1,6 +1,7 @@
 package org.onliner.spring.c51.service;
 
 import org.onliner.spring.c51.dao.SellerDAO;
+import org.onliner.spring.c51.dao.impl.hibernate.HibernateSellerDAO;
 import org.onliner.spring.c51.dto.seller.SellerSignupDTO;
 import org.onliner.spring.c51.dtoconverter.SellerDTOConverter;
 import org.onliner.spring.c51.entity.Seller;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SellerService {
     private SellerDAO sellerDAO;
+    private HibernateSellerDAO hibernateSellerDAO;
 
     public SellerService(SellerDAO sellerDAO) {
         this.sellerDAO = sellerDAO;
@@ -21,5 +23,9 @@ public class SellerService {
         } else {
             return sellerDAO.save(seller);
         }
+    }
+
+    public Seller findByPayerAccountNumber (int payerAccountNumber){
+        return hibernateSellerDAO.findByPayerAccountNumber(payerAccountNumber);
     }
 }

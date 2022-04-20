@@ -47,4 +47,14 @@ public class HibernateSellerDAO implements SellerDAO {
         session.close();
         return users;
     }
+
+
+    public Seller findByPayerAccountNumber(int payerAccountNumber) {
+        Session session = sessionFactory.openSession();
+        Query<Seller> namedQuery = session.createNamedQuery("Seller.exists", Seller.class);
+        namedQuery.setParameter("UNP", payerAccountNumber);
+        Optional<Seller> user = namedQuery.uniqueResultOptional();
+        session.close();
+        return user.get();
+    }
 }

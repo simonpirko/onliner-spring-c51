@@ -11,13 +11,14 @@ import java.util.Set;
         @NamedQuery(name = "User.findByEmailWithRoles", query = "SELECT u FROM User u JOIN FETCH u.roles WHERE u.email = :email"),
         @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
         @NamedQuery(name = "User.findAllWithRoles", query = "SELECT u FROM User u JOIN FETCH u.roles r"),
-        @NamedQuery(name = "User.exists", query = "SELECT u FROM User u WHERE u.email = :email")
+        @NamedQuery(name = "User.exists", query = "SELECT u FROM User u WHERE u.email = :email"),
+        @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
 })
-@Data                                                   // ONL-12 : lombok
-@NoArgsConstructor                                      // ONL-12 : lombok
-@AllArgsConstructor                                     // ONL-12 : lombok
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)       // ONL-12 : lombok
-@Builder                                                // ONL-12 : lombok
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 @Entity
 @Table(name = "users")
 public class User {

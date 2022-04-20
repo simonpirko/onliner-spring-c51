@@ -4,18 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.onliner.spring.c51.entity.Seller;
+import org.onliner.spring.c51.entity.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Data                                   // ONL-12 : lombok
-@NoArgsConstructor                      // ONL-12 : lombok
-@AllArgsConstructor                     // ONL-12 : lombok
-@Builder                                // ONL-12 : lombok
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SellerFeedbackDTO {
     @NotBlank
     @NotEmpty
@@ -26,23 +31,26 @@ public class SellerFeedbackDTO {
     @NotBlank
     @NotEmpty
     @Pattern(regexp = "^[a-zA-Z0-9:\\s,\\.]+$",
-            message = "Legal address must contain only numbers, letters, periods, commas and and whitespaces!")
+            message = "Description must contain only numbers, letters, periods, commas and and whitespaces!")
     private String description;
 
     @NotBlank
     @NotEmpty
-    @Pattern(regexp = "^[a-zA-Z\"\\s]*$",
-            message = "Name of a legal entity must contain only letters and quotation mark!")
+    @Pattern(regexp = "^[a-zA-Z0-9:\\s,\\.]+$",
+            message = "Grade must contain only numbers, letters, periods, commas and and whitespaces!")
     private String grade;
 
-    @Past(message = "Date of state registration must be before the current date!")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date userName;
+//    @NotBlank
+//    @NotEmpty
+//    @Email(regexp = ".*@[a-z]*\\.[a-z]{2,}")
+//    @Size(min = 3, max = 100, message = "Email введен некоректно, проверьте правильность ввода и " +
+//            " повторите попытку")
+    private User user;
 
-    @NotBlank
-    @NotEmpty
-    @Pattern(regexp = "(?:^[a-zA-Z\\s]*$)",
-            message = "Registration authority must contain only letters and spaces!")
-    private String sellerName;
+//    @NotBlank
+//    @NotEmpty
+//    @Pattern(regexp = "^[0-9]{9}$",
+//            message = "Payer account number must contain only 9 digits!")
+    private Seller seller;
 
 }

@@ -49,7 +49,17 @@ public class HibernateUserDAO implements UserDAO {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
+    public Optional<User> findByEmail(int id) {
+        Session session = sessionFactory.openSession();
+        Query<User> namedQuery = session.createNamedQuery("User.findByEmail", User.class);
+        namedQuery.setParameter("email", email);
+        Optional<User> user = namedQuery.uniqueResultOptional();
+        session.close();
+        return user;
+    }
+
+    @Override
+    public Optional<User> findByEmailForSellerFeedback(String email) {
         Session session = sessionFactory.openSession();
         Query<User> namedQuery = session.createNamedQuery("User.findByEmail", User.class);
         namedQuery.setParameter("email", email);
@@ -82,5 +92,15 @@ public class HibernateUserDAO implements UserDAO {
         Session session = sessionFactory.getCurrentSession();
         roles.forEach(user::addRole);
         session.merge(user);
+    }
+
+    @Override
+    public Optional<User> findById(int id) {
+        Session session = sessionFactory.openSession();
+        Query<User> namedQuery = session.createNamedQuery("User.findById", User.class);
+        namedQuery.setParameter("id", id);
+        Optional<User> user = namedQuery.uniqueResultOptional();
+        session.close();
+        return user;
     }
 }

@@ -11,6 +11,10 @@ public interface UserDAO extends GenericEntityDAO<User> {
 
     Optional<User> findByEmail(String email);
 
+    Optional<User> findById(int id);
+
+    Optional<User> findByEmailForSellerFeedback(String email);
+
     Optional<User> findByEmailWithRoles(String email);
 
     List<User> findAllWithRoles();

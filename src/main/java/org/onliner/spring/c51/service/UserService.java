@@ -69,4 +69,12 @@ public class UserService {
             userDAO.assignRolesToUser(user, foundRoles);
         }
     }
+
+    public Optional<User> findById(int id) {
+        return userDAO.findById(id);
+    }
+
+    public User findByEmailForSellerFeedback(String email) {
+        return userDAO.findByEmailForSellerFeedback(email).get();
+    }
 }

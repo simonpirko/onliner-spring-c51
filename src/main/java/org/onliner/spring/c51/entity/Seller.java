@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 @NamedQueries({
         @NamedQuery(name = "Seller.exists", query = "SELECT s FROM Seller s " +
                 "WHERE s.stateRegistrationInformation.payerAccountNumber = :UNP"),
+        @NamedQuery(name = "Seller.findByP", query = "SELECT s FROM Seller s " +
+                "WHERE s.stateRegistrationInformation.payerAccountNumber = :UNP"),
         @NamedQuery(name = "Seller.findAll", query = "SELECT s FROM Seller s")
 })
 @Data                                               // ONL-12 : lombok
