@@ -10,13 +10,14 @@ import java.time.LocalDateTime;
                 "WHERE s.stateRegistrationInformation.payerAccountNumber = :UNP"),
         @NamedQuery(name = "Seller.findByP", query = "SELECT s FROM Seller s " +
                 "WHERE s.stateRegistrationInformation.payerAccountNumber = :UNP"),
+        @NamedQuery(name = "Seller.findById", query = "SELECT s FROM Seller s WHERE s.id = :id"),
         @NamedQuery(name = "Seller.findAll", query = "SELECT s FROM Seller s")
 })
-@Data                                               // ONL-12 : lombok
-@NoArgsConstructor                                  // ONL-12 : lombok
-@AllArgsConstructor                                 // ONL-12 : lombok
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)   // ONL-12 : lombok
-@Builder                                            // ONL-12 : lombok
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 @Entity
 @Table
 public class Seller {

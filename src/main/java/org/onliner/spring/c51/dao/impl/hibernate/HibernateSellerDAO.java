@@ -57,4 +57,14 @@ public class HibernateSellerDAO implements SellerDAO {
         session.close();
         return user.get();
     }
+
+    @Override
+    public Optional<Seller> findById(long id) {
+        Session session = sessionFactory.openSession();
+        Query<Seller> namedQuery = session.createNamedQuery("Seller.findById", Seller.class);
+        namedQuery.setParameter("id", id);
+        Optional<Seller> seller = namedQuery.uniqueResultOptional();
+        session.close();
+        return seller;
+    }
 }

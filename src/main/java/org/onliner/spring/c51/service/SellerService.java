@@ -5,7 +5,10 @@ import org.onliner.spring.c51.dao.impl.hibernate.HibernateSellerDAO;
 import org.onliner.spring.c51.dto.seller.SellerSignupDTO;
 import org.onliner.spring.c51.dtoconverter.SellerDTOConverter;
 import org.onliner.spring.c51.entity.Seller;
+import org.onliner.spring.c51.entity.User;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class SellerService {
@@ -25,7 +28,12 @@ public class SellerService {
         }
     }
 
-    public Seller findByPayerAccountNumber (int payerAccountNumber){
+    public Seller findByPayerAccountNumber(int payerAccountNumber) {
         return hibernateSellerDAO.findByPayerAccountNumber(payerAccountNumber);
+    }
+
+
+    public Optional<Seller> findById(long id) {
+        return sellerDAO.findById(id);
     }
 }

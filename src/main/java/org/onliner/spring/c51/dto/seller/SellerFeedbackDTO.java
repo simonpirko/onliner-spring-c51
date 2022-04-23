@@ -40,17 +40,16 @@ public class SellerFeedbackDTO {
             message = "Grade must contain only numbers, letters, periods, commas and and whitespaces!")
     private String grade;
 
-//    @NotBlank
-//    @NotEmpty
-//    @Email(regexp = ".*@[a-z]*\\.[a-z]{2,}")
-//    @Size(min = 3, max = 100, message = "Email введен некоректно, проверьте правильность ввода и " +
-//            " повторите попытку")
-    private User user;
+    @NotBlank
+    @NotEmpty
+    @Pattern(regexp = "^[0-9]{9}$",
+            message = "SellerId must contain only 9 digits!")
+    private String userId;
 
-//    @NotBlank
-//    @NotEmpty
-//    @Pattern(regexp = "^[0-9]{9}$",
-//            message = "Payer account number must contain only 9 digits!")
-    private Seller seller;
+    @NotBlank
+    @NotEmpty
+    @Pattern(regexp = "^[0-9]{9}$",
+            message = "SellerId must contain only 9 digits!")
+    private String sellerId;
 
 }

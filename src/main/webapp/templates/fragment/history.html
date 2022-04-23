@@ -1,0 +1,9 @@
+<div th:fragment="history">
+    <div th:if="${#lists.isEmpty(sellerFeedbackList)}">
+        seller feedback list is empty
+    </div>
+
+    <div th:each="result : ${sellerFeedbackList}">
+        <td th:text="${sellerFeedback.toString}">sellerFeedback</td>
+    </div>
+</div>

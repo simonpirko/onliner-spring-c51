@@ -49,7 +49,7 @@ public class HibernateUserDAO implements UserDAO {
     }
 
     @Override
-    public Optional<User> findByEmail(int id) {
+    public Optional<User> findByEmail(String email) {
         Session session = sessionFactory.openSession();
         Query<User> namedQuery = session.createNamedQuery("User.findByEmail", User.class);
         namedQuery.setParameter("email", email);

@@ -34,7 +34,7 @@ public class SellerSignupDTO {
     @NotEmpty
     @Pattern(regexp = "^[0-9]{9}$",
             message = "Payer account number must contain only 9 digits!")
-    private int payerAccountNumber;
+    private String payerAccountNumber;
 
     @Past(message = "Date of state registration must be before the current date!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

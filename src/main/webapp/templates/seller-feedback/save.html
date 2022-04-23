@@ -6,10 +6,6 @@
 </head>
 <body>
 
-<!--<p>th:-->
-<!--    <object data="${seller.getName}" type=""></object>-->
-<!--</p>-->
-
 
 <form action="#" th:action="@{/seller-feedback/save}" method="post" th:object="${sellerFeedback}">
 
@@ -33,5 +29,8 @@
 
 </form>
 
+<hr>
+
+<header th:insert="fragment/history.html :: history">Feedback List</header>
 </body>
 </html>

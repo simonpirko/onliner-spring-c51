@@ -26,8 +26,8 @@ public class SellerFeedbackDTOConverter {
                 .title(sellerFeedbackDTO.getTitle())
                 .description(sellerFeedbackDTO.getDescription())
                 .grade(sellerFeedbackDTO.getGrade())
-                .user(userService.findByEmailForSellerFeedback(sellerFeedbackDTO.getEmail()))
-                .seller(sellerService.findByPayerAccountNumber(sellerFeedbackDTO.getPayerAccountNumber()))
+                .user(userService.findById(Integer.parseInt(sellerFeedbackDTO.getUserId())).get())
+                .seller(sellerService.findById(Integer.parseInt(sellerFeedbackDTO.getSellerId())).get())
                 .build();
     }
 }
