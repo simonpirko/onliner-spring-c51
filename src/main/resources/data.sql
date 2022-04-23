@@ -9,7 +9,6 @@ INSERT INTO users_roles(user_id, role_id) VALUE (1, 1);
 INSERT INTO users(email, firstName, lastName, password, username) VALUE ('user@gmail.com', 'user', 'user', 'adMiN1', 'user');
 INSERT INTO users_roles(user_id, role_id) VALUE (2, 2);
 
-
 INSERT INTO users(email, firstName, lastName, password, username) VALUE ('manager@gmail.com', 'manager', 'manager', 'adMiN1', 'manager');
 INSERT INTO users_roles(user_id, role_id) VALUE (3, 3);
 
@@ -18,7 +17,6 @@ INSERT INTO users_roles(user_id, role_id) VALUE (4, 3);
 
 INSERT INTO users(email, firstName, lastName, password, username) VALUE ('manager2@gmail.com', 'manager2', 'manager2', 'adMiN1', 'manager2');
 INSERT INTO users_roles(user_id, role_id) VALUE (5, 3);
-
 
 # PRODUCT CATEGORY
 INSERT INTO product_category(name) VALUES ('ELECTRONICS');
@@ -63,14 +61,11 @@ INSERT INTO product(name, manufacturer_id, product_type_id) VALUE ('Smartphone X
 INSERT INTO product(name, manufacturer_id, product_type_id) VALUE ('Radiophone Panasonic KX-TG2511RUT', 3, 2);
 INSERT INTO product(name, manufacturer_id, product_type_id) VALUE ('Radiophone TeXet TX-D6705A', 4, 2);
 
-
-
 # PRODUCTS PROPERTIES
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (1, 1),(1, 3),(1, 5),(1, 8);
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (2, 2),(2, 3),(2, 6),(2, 10);
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (3, 1),(3, 11),(3, 12);
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (4, 2),(4, 11),(4, 13);
-
 
 # STATE REGISTRATION INFORMATION
 INSERT INTO state_registration_information(entryTradeRegisterDate, legalEntityName, payerAccountNumber, registrationAuthority, stateRegistrationDate, stateRegistrationLegalEntityPlace) VALUE ('2001-01-01', 'OOO TTTT', 123456789, 'Minsk gov', '2001-02-02', 'Minsk');

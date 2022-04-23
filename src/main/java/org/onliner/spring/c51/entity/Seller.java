@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 @NamedQueries({
         @NamedQuery(name = "Seller.exists", query = "SELECT s FROM Seller s " +
                 "WHERE s.stateRegistrationInformation.payerAccountNumber = :UNP"),
-        @NamedQuery(name = "Seller.findAll", query = "SELECT s FROM Seller s"),
+        @NamedQuery(name = "Seller.findAll",
+                query = "SELECT s FROM Seller s"),
         @NamedQuery(name = "Seller.findBySellerManagerId",
                 query = "SELECT s FROM Seller s JOIN FETCH s.managers m LEFT JOIN FETCH s.sellerOffers WHERE m.id = :sellerManagerId")
 })

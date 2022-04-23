@@ -43,4 +43,5 @@ public class StateRegistrationInformation {
 
     @OneToOne
     private Seller seller;
+
 }
