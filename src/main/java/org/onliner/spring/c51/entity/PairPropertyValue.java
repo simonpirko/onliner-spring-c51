@@ -32,4 +32,7 @@ public class PairPropertyValue {
 
     @ManyToMany(mappedBy = "pairPropertyValueList")
     private Set<Product> products = new HashSet<>();
+
+    @ManyToMany(mappedBy = "pairPropertyValueListForType")
+    private Set<ProductType> productTypes = new HashSet<>();
 }

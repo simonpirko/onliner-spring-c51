@@ -1,6 +1,7 @@
 package org.onliner.spring.c51.controller;
 
 import org.onliner.spring.c51.entity.User;
+import org.onliner.spring.c51.service.ProductTypeService;
 import org.onliner.spring.c51.service.RoleService;
 import org.onliner.spring.c51.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ public class AdminController {
     public static final String PATH_ADMIN_PANEL_TEMPLATE = "admin/admin-panel";
     public static final String PATH_ROLE_MANAGEMENT_TEMPLATE = "admin/role-management";
     public static final String PATH_ROLE_ASSIGNMENT_TEMPLATE = "admin/role-assignment";
+    public static final String PATH_ADD_PRODUCT_TEMPLATE = "admin/add-product";
+    public static final String ATTRIBUTE_CATALOG = "catalog";
     public static final String REDIRECT_TO_ROLE_ASSIGNMENT_PAGE_URL = "redirect:/admin/role-management/role-assignment";
 
     public static final String ATTRIBUTE_ROLES = "roles";
@@ -26,10 +29,13 @@ public class AdminController {
     public static final String OBJECT_ERROR_GLOBAL = "global";
     public final UserService userService;
     public final RoleService roleService;
+    private final ProductTypeService productTypeService;
 
-    public AdminController(UserService userService, RoleService roleService) {
+
+    public AdminController(UserService userService, RoleService roleService, ProductTypeService productTypeService) {
         this.userService = userService;
         this.roleService = roleService;
+        this.productTypeService = productTypeService;
     }
 
     @GetMapping
@@ -60,5 +66,11 @@ public class AdminController {
             }
         }
         return PATH_ROLE_ASSIGNMENT_TEMPLATE;
+    }
+
+    @GetMapping("/add-product")
+    public String getAddProductTemplate(Model model){
+        model.addAttribute(ATTRIBUTE_CATALOG, productTypeService.getCatalog());
+        return PATH_ADD_PRODUCT_TEMPLATE;
     }
 }

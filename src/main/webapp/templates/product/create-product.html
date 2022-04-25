@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
 </head>
 <body>
 
-        Hello
-        <div th:if = "${type}=='radiotelephone'">
-            <div th:insert ="product/radiotelephone-fragment :: radiotelephone">
+    <p th:text="${product.productTypeName}"></p>
 
-            </div>
+    <div th:each="group : ${product.productDescription}">
+        <p th:text="${group.key}"></p>
+        <div th:each="pairPropertyValue : ${group.value}">
+            <p th:text="${pairPropertyValue.key}"></p>
+                        <select>
+                            <option th:value="null" th:text="'-'">
+                            <option th:each="propertyvalue : ${pairPropertyValue.value}"
+                                    th:value="${propertyvalue}" th:text="${propertyvalue}">
+                            </option>
+                        </select>
         </div>
-
-        <div th:if = "${type}=='smartphone'">
-            <div th:insert ="product/smartphone-fragment :: smartphone">
-            </div>
-        </div>
+    </div>
 
 </body>
 </html>
