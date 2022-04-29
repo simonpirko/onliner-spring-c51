@@ -15,20 +15,17 @@ public class ProductTypeDTOConverter {
         return ProductTypeDetailsDTO.builder()
                 .productTypeId(productType.getId())
                 .productTypeName(productType.getName())
-                .productDescription(getProductDescription(productType))
+                .propertyTree(getPropertyTree(productType))
                 .build();
     }
 
-    private static Map<String, Map<String, List<String>>> getProductDescription(ProductType productType) {
-        return productType.getPairPropertyValueListForType().stream().distinct()
+    private static Map<String, Map<String, List<PairPropertyValue>>> getPropertyTree(ProductType productType) {
+        return productType.getPairPropertyValueListForType().stream()
                 .collect(Collectors.groupingBy(productPropertyGroup->productPropertyGroup.getProductPropertyGroup().getName(),
-                        Collectors.groupingBy(productProperty->productProperty.getProductProperty().getName(),
-                                Collectors.mapping(PairPropertyValue::getValue,
-                                        Collectors.toList()))));
-
-
-
-
-
+                        Collectors.groupingBy(productProperty->productProperty.getProductProperty().getName(), Collectors.toList())));
     }
+
+
+
+
 }

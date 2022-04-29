@@ -1,18 +1,21 @@
 package org.onliner.spring.c51.controller;
 
+import org.onliner.spring.c51.dto.product.ProductDTO;
+import org.onliner.spring.c51.entity.*;
 import org.onliner.spring.c51.service.ProductService;
 import org.onliner.spring.c51.service.ProductTypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/create")
 public class CreationController {
     public static final String PATH_CREATE_PRODUCT_TEMPLATE = "product/create-product";
-    public static final String ATTRIBUTE_PRODUCTS = "product";
+    public static final String ATTRIBUTE_PRODUCTS = "properties";
     private final ProductService productService;
     private final ProductTypeService productTypeService;
 
@@ -22,9 +25,15 @@ public class CreationController {
     }
 
     @GetMapping("/{type}")
-    public String getCreateSmartphoneTemplate(@PathVariable String type, Model model) {
+    public String getCreateProductTemplate(@PathVariable String type, @ModelAttribute("productdto") ProductDTO productDTO,Model model) {
         model.addAttribute(ATTRIBUTE_PRODUCTS, productTypeService.getProductTypeDetailsDTO(productTypeService.findByProductTypeName(type)));
         return PATH_CREATE_PRODUCT_TEMPLATE;
     }
 
+    @PostMapping()
+    public String createProduct(@ModelAttribute("productdto") ProductDTO productDTO, Model model) {
+        System.out.println(productDTO.getPropertiesList().stream().toString());
+        return PATH_CREATE_PRODUCT_TEMPLATE;
+
+    }
 }
