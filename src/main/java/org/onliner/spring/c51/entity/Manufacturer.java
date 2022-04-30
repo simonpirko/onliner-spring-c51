@@ -2,10 +2,14 @@ package org.onliner.spring.c51.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+@NamedQueries({
+
+        @NamedQuery(name = "Manufacturer.findAll", query = "SELECT m FROM Manufacturer m"),
+        @NamedQuery(name = "Manufacturer.findById",
+                query = "SELECT m FROM Manufacturer m WHERE m.id = :id")
+})
 
 @Entity
 @Data
