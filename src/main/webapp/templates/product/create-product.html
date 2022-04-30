@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
 </head>
 <body>
 
-<!--    <p th:text="${producttemplate.productTypeName}"></p>-->
-
-    <form th:method="POST" th:action="@{/create}" th:object="${productdto}">
+    <p th:text="${properties.productTypeName}"></p>
+    <form th:action="@{/create/{type} (type=${properties.productTypeName})}" method="post" th:object="${productdto}">
     <div th:each="group : ${properties.propertyTree}">
         <p th:text="${group.key}"></p>
         <div th:each="pairPropertyValue : ${group.value}">
@@ -20,8 +19,10 @@
                             </option>
                         </select>
         </div>
-    </div>
+    </div>        
+    <p>
         <input type="submit" >
+    </p>
     </form>
 
 </body>

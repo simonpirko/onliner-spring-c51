@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("/create")
 public class CreationController {
     public static final String PATH_CREATE_PRODUCT_TEMPLATE = "product/create-product";
+    public static final String REDIRECT_CREATION_PRODUCT_TEMPLATE = "redirect:/admin/create-product";
     public static final String ATTRIBUTE_PRODUCTS = "properties";
     private final ProductService productService;
     private final ProductTypeService productTypeService;
@@ -26,14 +27,17 @@ public class CreationController {
 
     @GetMapping("/{type}")
     public String getCreateProductTemplate(@PathVariable String type, @ModelAttribute("productdto") ProductDTO productDTO,Model model) {
+        System.out.println(type);
         model.addAttribute(ATTRIBUTE_PRODUCTS, productTypeService.getProductTypeDetailsDTO(productTypeService.findByProductTypeName(type)));
         return PATH_CREATE_PRODUCT_TEMPLATE;
     }
 
-    @PostMapping()
-    public String createProduct(@ModelAttribute("productdto") ProductDTO productDTO, Model model) {
-        System.out.println(productDTO.getPropertiesList().stream().toString());
-        return PATH_CREATE_PRODUCT_TEMPLATE;
+    @PostMapping("/{type}")
+    public String createProduct(@PathVariable String type, @ModelAttribute("productdto") ProductDTO productDTO, Model model) {
+        model.addAttribute(ATTRIBUTE_PRODUCTS, productTypeService.getProductTypeDetailsDTO(productTypeService.findByProductTypeName(type)));
+        System.out.println(type);
+        System.out.println(productDTO.showList());
+        return REDIRECT_CREATION_PRODUCT_TEMPLATE;
 
     }
 }

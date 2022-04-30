@@ -10,6 +10,15 @@ import java.util.List;
 @Setter
 @Getter
 public class ProductDTO {
-    List<Integer> propertiesList;
+    private List<Long> propertiesList;
+
+    public StringBuffer showList(){
+        StringBuffer s = new StringBuffer();
+        for (Long i : propertiesList){
+            s=s.append(i);
+            s=s.append("; ");
+        }
+        return s;
+    }
 
 }

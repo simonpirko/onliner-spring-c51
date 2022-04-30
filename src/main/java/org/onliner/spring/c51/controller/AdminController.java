@@ -20,7 +20,7 @@ public class AdminController {
     public static final String PATH_ADMIN_PANEL_TEMPLATE = "admin/admin-panel";
     public static final String PATH_ROLE_MANAGEMENT_TEMPLATE = "admin/role-management";
     public static final String PATH_ROLE_ASSIGNMENT_TEMPLATE = "admin/role-assignment";
-    public static final String PATH_ADD_PRODUCT_TEMPLATE = "admin/add-product";
+    public static final String PATH_CREATION_PRODUCT_TEMPLATE = "admin/create-product";
     public static final String ATTRIBUTE_CATALOG = "catalog";
     public static final String REDIRECT_TO_ROLE_ASSIGNMENT_PAGE_URL = "redirect:/admin/role-management/role-assignment";
 
@@ -68,9 +68,9 @@ public class AdminController {
         return PATH_ROLE_ASSIGNMENT_TEMPLATE;
     }
 
-    @GetMapping("/add-product")
-    public String getAddProductTemplate(Model model){
+    @GetMapping("/create-product")
+    public String getCreationProductTemplate(Model model){
         model.addAttribute(ATTRIBUTE_CATALOG, productTypeService.getCatalog());
-        return PATH_ADD_PRODUCT_TEMPLATE;
+        return PATH_CREATION_PRODUCT_TEMPLATE;
     }
 }
