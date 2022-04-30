@@ -6,17 +6,39 @@
 </head>
 <body>
 
-        Hello
-        <div th:if = "${type}=='radiotelephone'">
-            <div th:insert ="product/radiotelephone-fragment :: radiotelephone">
 
-            </div>
-        </div>
+    <form th:action="@{/create/{type} (type=${properties.productTypeName})}" method="post" th:object="${productdto}">
 
-        <div th:if = "${type}=='smartphone'">
-            <div th:insert ="product/smartphone-fragment :: smartphone">
-            </div>
+    <p th:text="${properties.productTypeName}"></p>
+
+    <input type="text" th:field="*{name}" placeholder="Enter product name" required>
+
+    <p>
+    <label>Manufacturer</label>
+    <select th:field="*{manufacturerId}" >
+        <option th:each="manufacturer : ${manufacturers}"
+                th:value="${manufacturer.id}" th:text="${manufacturer.name}">
+        </option>
+    </select>
+    </p>
+    <input type="hidden" th:value="${properties.productTypeId}" th:attr="name='productTypeId'" >
+
+    <div th:each="group : ${properties.propertyTree}">
+        <p th:text="${group.key}"></p>
+        <div th:each="pairPropertyValue : ${group.value}">
+            <p th:text="${pairPropertyValue.key}"></p>
+                        <select th:field="*{propertiesList}" >
+                            <option th:value="null" th:text="'-'">
+                            <option th:each="propertyvalue : ${pairPropertyValue.value}"
+                                    th:value="${propertyvalue.id}" th:text="${propertyvalue.value}">
+                            </option>
+                        </select>
         </div>
+    </div>
+    <p>
+        <input type="submit" >
+    </p>
+    </form>
 
 </body>
 </html>

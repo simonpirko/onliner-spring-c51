@@ -67,6 +67,13 @@ INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) 
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (3, 1),(3, 11),(3, 12);
 INSERT INTO products_pairs_attribute_value(product_id, pair_attribute_value_id) VALUES (4, 2),(4, 11),(4, 13);
 
+# PRODUCT TYPE PAIRS PRODUCT PROPERTY
+
+INSERT INTO products_type_pairs_product_property_value(product_type_id,pair_attribute_value_id) VALUES (1, 1),(1, 3),(1, 5),(1, 8);
+INSERT INTO products_type_pairs_product_property_value(product_type_id,pair_attribute_value_id) VALUES (1, 2),(1, 6),(1, 10);
+INSERT INTO products_type_pairs_product_property_value(product_type_id,pair_attribute_value_id) VALUES (2, 1),(2, 11),(2, 12);
+INSERT INTO products_type_pairs_product_property_value(product_type_id,pair_attribute_value_id) VALUES (2, 2),(2, 13);
+
 # STATE REGISTRATION INFORMATION
 INSERT INTO state_registration_information(entryTradeRegisterDate, legalEntityName, payerAccountNumber, registrationAuthority, stateRegistrationDate, stateRegistrationLegalEntityPlace) VALUE ('2001-01-01', 'OOO TTTT', 123456789, 'Minsk gov', '2001-02-02', 'Minsk');
 INSERT INTO state_registration_information(entryTradeRegisterDate, legalEntityName, payerAccountNumber, registrationAuthority, stateRegistrationDate, stateRegistrationLegalEntityPlace) VALUE ('2002-02-02', 'OOO HHHH', 987654321, 'Minsk gov', '2002-03-03', 'Minsk');
